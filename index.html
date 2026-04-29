@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #080808;
+  color: #f0ede6;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 500px;
+  background: radial-gradient(ellipse at top, rgba(212,52,26,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.kicker {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #d4341a;
+  margin-bottom: 24px;
+  animation: fadeUp 0.8s ease 0.1s both;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 8vw, 80px);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -2px;
+  margin-bottom: 8px;
+  animation: fadeUp 0.8s ease 0.2s both;
+}
+
+h1 em {
+  font-style: italic;
+  color: #d4341a;
+  display: block;
+}
+
+.sub {
+  font-size: 16px;
+  color: #888;
+  max-width: 520px;
+  margin: 24px auto 48px;
+  line-height: 1.8;
+  animation: fadeUp 0.8s ease 0.35s both;
+}
+
+.sub strong { color: #f0ede6; font-weight: 500; }
+
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 48px;
+  animation: fadeUp 0.8s ease 0.45s both;
+}
+
+.bullet {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  font-size: 14px;
+  color: #bbb;
+}
+
+.bullet::before {
+  content: '→';
+  color: #d4341a;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+}
+
+.form-wrap {
+  display: flex;
+  gap: 0;
+  max-width: 460px;
+  width: 100%;
+  margin: 0 auto 20px;
+  animation: fadeUp 0.8s ease 0.55s both;
+}
+
+input[type="email"] {
+  flex: 1;
+  background: #111;
+  border: 1px solid #333;
+  border-right: none;
+  color: #f0ede6;
+  padding: 15px 20px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input[type="email"]:focus { border-color: #d4341a; }
+input[type="email"]::placeholder { color: #555; }
+
+button {
+  background: #d4341a;
+  color: #f0ede6;
+  border: none;
+  padding: 15px 28px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+button:hover { background: #b82d17; }
+
+.form-note {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #555;
+  animation: fadeUp 0.8s ease 0.6s both;
+}
+
+.pricing-strip {
+  display: flex;
+  gap: 2px;
+  margin: 48px auto 0;
+  max-width: 500px;
+  width: 100%;
+  animation: fadeUp 0.8s ease 0.65s both;
+}
+
+.price-item {
+  flex: 1;
+  background: #111;
+  border: 1px solid #1e1e1e;
+  padding: 18px 12px;
+  text-align: center;
+}
+
+.price-item.featured {
+  border-color: #d4341a;
+  background: rgba(212,52,26,0.06);
+}
+
+.price-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: #d4341a;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.price-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 28px;
+  justify-content: center;
+  margin: 40px auto 0;
+  width: 160px;
+  animation: fadeUp 0.8s ease 0.7s both;
+}
+
+.wb {
+  width: 3px;
+  background: #d4341a;
+  border-radius: 2px;
+  opacity: 0.5;
+  animation: wave 1.2s ease-in-out infinite;
+}
+
+.wb:nth-child(1){height:35%;animation-delay:0s}
+.wb:nth-child(2){height:70%;animation-delay:.1s}
+.wb:nth-child(3){height:100%;animation-delay:.2s}
+.wb:nth-child(4){height:55%;animation-delay:.3s}
+.wb:nth-child(5){height:80%;animation-delay:.4s}
+.wb:nth-child(6){height:45%;animation-delay:.5s}
+.wb:nth-child(7){height:90%;animation-delay:.35s}
+.wb:nth-child(8){height:60%;animation-delay:.25s}
+
+@keyframes wave {
+  0%,100%{transform:scaleY(.3)}
+  50%{transform:scaleY(1)}
+}
+
+@keyframes fadeUp {
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.success {
+  display: none;
+  color: #22c97a;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+
+.footer-note {
+  margin-top: 48px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #333;
+  text-transform: uppercase;
+  animation: fadeUp 0.8s ease 0.75s both;
+}
+</style>
+</head>
+<body>
+
+<div class="kicker">Now accepting early access applications</div>
+
+<h1>
+  Your Music.
+  <em>Supervisor-Ready.</em>
+</h1>
+
+<p class="sub">
+  Upload your master tracks and SyncReady automatically tags your music, certifies your ownership, and generates <strong>AI-written placement pitches</strong> for music supervisors — then puts everything in a professional gallery they can browse and download instantly.
+</p>
+
+<div class="bullets">
+  <div class="bullet">AI tags every track — BPM, key, mood, and genre</div>
+  <div class="bullet">One-Stop ownership certification built into every file</div>
+  <div class="bullet">Professional supervisor gallery — shareable in one link</div>
+  <div class="bullet">From upload to supervisor-ready in under 60 seconds</div>
+</div>
+
+<div class="form-wrap">
+  <input type="email" id="emailInput" placeholder="your@email.com" />
+  <button onclick="handleSubmit()">Join Waitlist</button>
+</div>
+<div class="form-note">Free to start · No credit card required · Early access = 1 free month</div>
+<div class="success" id="successMsg">✓ You're on the list — we'll be in touch soon.</div>
+
+<div class="pricing-strip">
+  <div class="price-item">
+    <div class="price-val">$0</div>
+    <div class="price-name">Starter</div>
+  </div>
+  <div class="price-item featured">
+    <div class="price-val">$25</div>
+    <div class="price-name">Pro / mo</div>
+  </div>
+  <div class="price-item">
+    <div class="price-val">$59</div>
+    <div class="price-name">Catalog / mo</div>
+  </div>
+</div>
+
+<div class="waveform">
+  <div class="wb"></div><div class="wb"></div><div class="wb"></div>
+  <div class="wb"></div><div class="wb"></div><div class="wb"></div>
+  <div class="wb"></div><div class="wb"></div>
+</div>
+
+<div class="footer-note">SyncReady · Built for independent artists</div>
+
+<script>
+function handleSubmit() {
+  const email = document.getElementById('emailInput').value;
+  if (!email || !email.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  // Saves email — replace this mailto with your Google Form or Mailchimp link later
+  window.location.href = 'mailto:syncreadyio@gmail.com?subject=Waitlist&body=Add me to the waitlist: ' + email;
+  document.getElementById('successMsg').style.display = 'block';
+  document.getElementById('emailInput').value = '';
+}
+</script>
+
+</body>
+</html>
