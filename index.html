@@ -3,308 +3,1065 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<title>SyncReady — Sync Intelligence for Independent Artists</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #06060a;
+  --surface: #0e0e16;
+  --card: #12121e;
+  --border: #1a1a2e;
+  --border2: #252540;
+  --white: #ede8f5;
+  --dim: #6b6880;
+  --dim2: #4a4760;
+  --gold: #c9974a;
+  --gold-soft: rgba(201,151,74,0.1);
+  --gold-border: rgba(201,151,74,0.25);
+  --purple: #7c5cf5;
+  --purple-soft: rgba(124,92,245,0.1);
+  --green: #2dd4a0;
+  --green-soft: rgba(45,212,160,0.1);
+  --red: #e85d4a;
+}
+
+html { scroll-behavior: smooth; }
 
 body {
-  background: #080808;
-  color: #f0ede6;
-  font-family: 'Barlow', sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
   font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── GRAIN ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, rgba(6,6,10,0.98) 0%, transparent 100%);
+  transition: all 0.4s;
+}
+
+nav.scrolled {
+  background: rgba(6,6,10,0.97);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--white);
+}
+
+.nav-logo em { font-style: italic; color: var(--gold); }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--white); }
+
+.nav-cta {
+  border: 1px solid var(--gold-border) !important;
+  color: var(--gold) !important;
+  padding: 8px 20px;
+  transition: all 0.2s !important;
+  background: var(--gold-soft) !important;
+}
+
+.nav-cta:hover { background: rgba(201,151,74,0.2) !important; color: var(--gold) !important; }
+
+/* ── HERO ── */
+.hero {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60px 24px;
-  text-align: center;
+  padding: 120px 60px 80px;
   position: relative;
   overflow: hidden;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 800px; height: 500px;
-  background: radial-gradient(ellipse at top, rgba(212,52,26,0.07) 0%, transparent 70%);
+/* Ambient orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
   pointer-events: none;
 }
 
-.kicker {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 11px;
-  letter-spacing: 5px;
+.orb-1 {
+  width: 600px; height: 400px;
+  background: rgba(124,92,245,0.04);
+  top: -100px; left: -200px;
+}
+
+.orb-2 {
+  width: 500px; height: 400px;
+  background: rgba(201,151,74,0.04);
+  top: 100px; right: -150px;
+}
+
+.orb-3 {
+  width: 400px; height: 300px;
+  background: rgba(45,212,160,0.03);
+  bottom: 0; left: 30%;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  text-align: center;
+}
+
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--gold-border);
+  background: var(--gold-soft);
+  padding: 6px 18px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  color: #d4341a;
-  margin-bottom: 24px;
-  animation: fadeUp 0.8s ease 0.1s both;
+  color: var(--gold);
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: riseUp 0.8s ease 0.1s forwards;
 }
 
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(42px, 8vw, 80px);
-  font-weight: 900;
-  line-height: 1.02;
+.hero-kicker::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.hero-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 8vw, 100px);
+  font-weight: 300;
+  line-height: 0.95;
   letter-spacing: -2px;
-  margin-bottom: 8px;
-  animation: fadeUp 0.8s ease 0.2s both;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: riseUp 0.9s ease 0.25s forwards;
 }
 
-h1 em {
-  font-style: italic;
-  color: #d4341a;
+.hero-headline strong {
+  font-weight: 600;
   display: block;
 }
 
-.sub {
-  font-size: 16px;
-  color: #888;
-  max-width: 520px;
-  margin: 24px auto 48px;
+.hero-headline em {
+  font-style: italic;
+  color: var(--gold);
+  display: block;
+}
+
+.hero-sub {
+  font-size: 17px;
+  color: var(--dim);
+  max-width: 580px;
+  margin: 0 auto 52px;
   line-height: 1.8;
-  animation: fadeUp 0.8s ease 0.35s both;
+  opacity: 0;
+  animation: riseUp 0.9s ease 0.4s forwards;
 }
 
-.sub strong { color: #f0ede6; font-weight: 500; }
+.hero-sub strong { color: var(--white); font-weight: 500; }
 
-.bullets {
+/* Email form */
+.hero-form {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 48px;
-  animation: fadeUp 0.8s ease 0.45s both;
+  max-width: 480px;
+  margin: 0 auto 16px;
+  opacity: 0;
+  animation: riseUp 0.9s ease 0.55s forwards;
 }
 
-.bullet {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  justify-content: center;
-  font-size: 14px;
-  color: #bbb;
-}
-
-.bullet::before {
-  content: '→';
-  color: #d4341a;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-}
-
-.form-wrap {
-  display: flex;
-  gap: 0;
-  max-width: 460px;
-  width: 100%;
-  margin: 0 auto 20px;
-  animation: fadeUp 0.8s ease 0.55s both;
-}
-
-input[type="email"] {
+.hero-form input {
   flex: 1;
-  background: #111;
-  border: 1px solid #333;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border2);
   border-right: none;
-  color: #f0ede6;
-  padding: 15px 20px;
-  font-family: 'Barlow', sans-serif;
+  color: var(--white);
+  padding: 16px 20px;
+  font-family: 'DM Sans', sans-serif;
   font-size: 14px;
   outline: none;
   transition: border-color 0.2s;
 }
 
-input[type="email"]:focus { border-color: #d4341a; }
-input[type="email"]::placeholder { color: #555; }
+.hero-form input:focus { border-color: var(--gold); }
+.hero-form input::placeholder { color: var(--dim2); }
 
-button {
-  background: #d4341a;
-  color: #f0ede6;
+.hero-form button {
+  background: var(--gold);
+  color: #06060a;
   border: none;
-  padding: 15px 28px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
+  padding: 16px 28px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s;
   white-space: nowrap;
 }
 
-button:hover { background: #b82d17; }
+.hero-form button:hover { background: #d4a454; }
 
 .form-note {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 11px;
-  letter-spacing: 1px;
-  color: #555;
-  animation: fadeUp 0.8s ease 0.6s both;
-}
-
-.pricing-strip {
-  display: flex;
-  gap: 2px;
-  margin: 48px auto 0;
-  max-width: 500px;
-  width: 100%;
-  animation: fadeUp 0.8s ease 0.65s both;
-}
-
-.price-item {
-  flex: 1;
-  background: #111;
-  border: 1px solid #1e1e1e;
-  padding: 18px 12px;
-  text-align: center;
-}
-
-.price-item.featured {
-  border-color: #d4341a;
-  background: rgba(212,52,26,0.06);
-}
-
-.price-val {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  font-weight: 900;
-  color: #d4341a;
-  line-height: 1;
-  margin-bottom: 4px;
-}
-
-.price-name {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: 'DM Mono', monospace;
   font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #555;
+  letter-spacing: 1px;
+  color: var(--dim2);
+  opacity: 0;
+  animation: riseUp 0.9s ease 0.65s forwards;
 }
 
-.waveform {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  height: 28px;
-  justify-content: center;
-  margin: 40px auto 0;
-  width: 160px;
-  animation: fadeUp 0.8s ease 0.7s both;
-}
-
-.wb {
-  width: 3px;
-  background: #d4341a;
-  border-radius: 2px;
-  opacity: 0.5;
-  animation: wave 1.2s ease-in-out infinite;
-}
-
-.wb:nth-child(1){height:35%;animation-delay:0s}
-.wb:nth-child(2){height:70%;animation-delay:.1s}
-.wb:nth-child(3){height:100%;animation-delay:.2s}
-.wb:nth-child(4){height:55%;animation-delay:.3s}
-.wb:nth-child(5){height:80%;animation-delay:.4s}
-.wb:nth-child(6){height:45%;animation-delay:.5s}
-.wb:nth-child(7){height:90%;animation-delay:.35s}
-.wb:nth-child(8){height:60%;animation-delay:.25s}
-
-@keyframes wave {
-  0%,100%{transform:scaleY(.3)}
-  50%{transform:scaleY(1)}
-}
-
-@keyframes fadeUp {
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-.success {
+.success-msg {
   display: none;
-  color: #22c97a;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 13px;
+  color: var(--green);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-top: 12px;
 }
 
-.footer-note {
-  margin-top: 48px;
-  font-family: 'Barlow Condensed', sans-serif;
+/* ── INTELLIGENCE STRIP ── */
+.intel-strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.intel-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'DM Mono', monospace;
   font-size: 10px;
   letter-spacing: 2px;
-  color: #333;
   text-transform: uppercase;
-  animation: fadeUp 0.8s ease 0.75s both;
+  color: var(--dim);
+  white-space: nowrap;
+}
+
+.intel-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* ── SECTIONS ── */
+.section {
+  padding: 100px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.eyebrow-line { width: 28px; height: 1px; background: var(--gold); }
+
+.eyebrow-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+}
+
+.section-title strong { font-weight: 600; }
+.section-title em { font-style: italic; color: var(--gold); }
+
+.section-sub {
+  font-size: 15px;
+  color: var(--dim);
+  max-width: 580px;
+  line-height: 1.8;
+  margin-bottom: 52px;
+}
+
+/* ── INTELLIGENCE FEATURES ── */
+.intel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.intel-card {
+  background: var(--card);
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+
+.intel-card:hover { background: #151525; }
+
+.intel-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.intel-card:hover::after { opacity: 1; }
+
+.intel-icon {
+  font-size: 24px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.intel-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.intel-body {
+  font-size: 13px;
+  color: var(--dim);
+  line-height: 1.75;
+}
+
+.intel-example {
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: rgba(201,151,74,0.06);
+  border-left: 2px solid var(--gold);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* ── KEYWORDS DEMO ── */
+.demo-section {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 100px 60px;
+}
+
+.demo-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.keyword-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.kw {
+  padding: 8px 16px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  border: 1px solid var(--border2);
+  color: var(--dim);
+  transition: all 0.3s;
+  cursor: default;
+  animation: fadeIn 0.5s ease both;
+}
+
+.kw:hover {
+  border-color: var(--gold-border);
+  color: var(--gold);
+  background: var(--gold-soft);
+}
+
+.kw.active {
+  border-color: var(--gold-border);
+  color: var(--gold);
+  background: var(--gold-soft);
+}
+
+.kw.dim-kw { opacity: 0.35; }
+
+@keyframes fadeIn { from{opacity:0;transform:scale(0.9)} to{opacity:1;transform:scale(1)} }
+
+/* stagger keyword animations */
+.kw:nth-child(1){animation-delay:0.1s}
+.kw:nth-child(2){animation-delay:0.15s}
+.kw:nth-child(3){animation-delay:0.2s}
+.kw:nth-child(4){animation-delay:0.25s}
+.kw:nth-child(5){animation-delay:0.3s}
+.kw:nth-child(6){animation-delay:0.35s}
+.kw:nth-child(7){animation-delay:0.4s}
+.kw:nth-child(8){animation-delay:0.45s}
+.kw:nth-child(9){animation-delay:0.5s}
+.kw:nth-child(10){animation-delay:0.55s}
+.kw:nth-child(11){animation-delay:0.6s}
+.kw:nth-child(12){animation-delay:0.65s}
+
+/* ── PRICING ── */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 52px;
+}
+
+.price-card {
+  background: var(--card);
+  padding: 40px 32px;
+  position: relative;
+  transition: background 0.3s;
+}
+
+.price-card:hover { background: #151525; }
+
+.price-card.featured {
+  background: #0f0f20;
+  border: 1px solid var(--gold-border);
+  margin: -1px;
+  z-index: 2;
+}
+
+.featured-label {
+  position: absolute;
+  top: -1px; right: 24px;
+  background: var(--gold);
+  color: #06060a;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+}
+
+.price-tier {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 20px;
+}
+
+.price-amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 64px;
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.price-amount sup {
+  font-size: 24px;
+  vertical-align: top;
+  margin-top: 12px;
+  display: inline-block;
+  color: var(--dim);
+}
+
+.price-period {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--dim);
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+}
+
+.price-hook {
+  font-size: 14px;
+  color: var(--white);
+  font-weight: 500;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.4;
+}
+
+.price-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.price-features li {
+  font-size: 13px;
+  color: var(--dim);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  line-height: 1.5;
+}
+
+.fi { flex-shrink: 0; margin-top: 1px; }
+.fi-on { color: var(--gold); }
+.fi-off { color: var(--border2); }
+.li-on { color: #c4bfd8; }
+.li-off { color: var(--dim2); }
+.li-highlight { color: var(--white); font-weight: 500; }
+
+.price-btn {
+  display: block;
+  text-align: center;
+  padding: 13px 20px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--dim);
+}
+
+.btn-outline:hover { border-color: var(--white); color: var(--white); }
+
+.btn-gold {
+  background: var(--gold);
+  color: #06060a;
+}
+
+.btn-gold:hover { background: #d4a454; }
+
+/* ── COMPARISON ── */
+.compare-table {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-top: 52px;
+}
+
+.compare-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.compare-th {
+  padding: 14px 20px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--dim);
+  border-right: 1px solid var(--border);
+}
+
+.compare-th:last-child { border-right: none; }
+.compare-th.highlight { color: var(--gold); }
+
+.compare-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.compare-row:last-child { border-bottom: none; }
+.compare-row:hover { background: rgba(201,151,74,0.02); }
+
+.compare-td {
+  padding: 14px 20px;
+  font-size: 13px;
+  color: var(--dim);
+  border-right: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+}
+
+.compare-td:last-child { border-right: none; }
+.compare-td.feature { color: var(--white); font-weight: 400; }
+.check { color: var(--green); font-size: 15px; }
+.cross { color: var(--border2); font-size: 15px; }
+.partial { color: var(--gold); font-size: 12px; font-style: italic; }
+
+/* ── FINAL CTA ── */
+.final-cta {
+  text-align: center;
+  padding: 140px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.final-cta::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 700px; height: 400px;
+  background: radial-gradient(ellipse, rgba(201,151,74,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.footer-logo em { font-style: italic; color: var(--gold); }
+
+.footer-copy {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--dim2);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes riseUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal.d1 { transition-delay: 0.1s; }
+.reveal.d2 { transition-delay: 0.2s; }
+.reveal.d3 { transition-delay: 0.3s; }
+
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .hero, .section, .final-cta { padding-left: 24px; padding-right: 24px; }
+  .intel-grid, .pricing-grid { grid-template-columns: 1fr; gap: 16px; background: transparent; border: none; }
+  .intel-card, .price-card { border: 1px solid var(--border); }
+  .price-card.featured { margin: 0; }
+  .demo-inner { grid-template-columns: 1fr; gap: 40px; }
+  .demo-section { padding: 60px 24px; }
+  .intel-strip { padding: 20px 24px; gap: 20px; }
+  .compare-header, .compare-row { grid-template-columns: 1.5fr 1fr 1fr; }
+  .compare-th:nth-child(3), .compare-td:nth-child(3) { display: none; }
+  footer { padding: 24px; flex-direction: column; text-align: center; }
 }
 </style>
 </head>
 <body>
 
-<div class="kicker">Now accepting early access applications</div>
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">Sync<em>Ready</em></div>
+  <ul class="nav-links">
+    <li><a href="#intelligence">Intelligence</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#pricing" class="nav-cta">Join Waitlist</a></li>
+  </ul>
+</nav>
 
-<h1>
-  Your Music.
-  <em>Supervisor-Ready.</em>
-</h1>
-
-<p class="sub">
-  Upload your master tracks and SyncReady automatically tags your music, certifies your ownership, and generates <strong>AI-written placement pitches</strong> for music supervisors — then puts everything in a professional gallery they can browse and download instantly.
-</p>
-
-<div class="bullets">
-  <div class="bullet">AI tags every track — BPM, key, mood, and genre</div>
-  <div class="bullet">One-Stop ownership certification built into every file</div>
-  <div class="bullet">Professional supervisor gallery — shareable in one link</div>
-  <div class="bullet">From upload to supervisor-ready in under 60 seconds</div>
-</div>
-
-<div class="form-wrap">
-  <input type="email" id="emailInput" placeholder="your@email.com" />
-  <button onclick="handleSubmit()">Join Waitlist</button>
-</div>
-<div class="form-note">Free to start · No credit card required · Early access = 1 free month</div>
-<div class="success" id="successMsg">✓ You're on the list — we'll be in touch soon.</div>
-
-<div class="pricing-strip">
-  <div class="price-item">
-    <div class="price-val">$0</div>
-    <div class="price-name">Starter</div>
+<!-- HERO -->
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="hero-inner">
+    <div class="hero-kicker">Sync Intelligence for Independent Artists</div>
+    <h1 class="hero-headline">
+      Don't just prep
+      <strong>your music.</strong>
+      <em>Understand it.</em>
+    </h1>
+    <p class="hero-sub">
+      SyncReady doesn't just tag your tracks — it <strong>thinks like a music supervisor.</strong> Upload once and get AI-generated scene pitches, emotional keyword mapping, catalog gap analysis, and a readiness score that tells you exactly what to fix and what to make next.
+    </p>
+    <div class="hero-form">
+      <input type="email" id="emailInput" placeholder="your@email.com" />
+      <button onclick="handleSubmit()">Join Waitlist</button>
+    </div>
+    <div class="form-note">Free to start · 1 full track, no limits · No credit card required</div>
+    <div class="success-msg" id="successMsg">✓ You're on the list — we'll be in touch.</div>
   </div>
-  <div class="price-item featured">
-    <div class="price-val">$25</div>
-    <div class="price-name">Pro / mo</div>
+</section>
+
+<!-- INTEL STRIP -->
+<div class="intel-strip">
+  <div class="intel-item"><div class="intel-dot"></div>AI Scene Pitch Generation</div>
+  <div class="intel-item"><div class="intel-dot"></div>Emotional Keyword Mapping</div>
+  <div class="intel-item"><div class="intel-dot"></div>One-Stop Certification</div>
+  <div class="intel-item"><div class="intel-dot"></div>Editability Score</div>
+  <div class="intel-item"><div class="intel-dot"></div>Catalog Gap Analysis</div>
+  <div class="intel-item"><div class="intel-dot"></div>Metadata Locked Into File</div>
+</div>
+
+<!-- INTELLIGENCE SECTION -->
+<section class="section" id="intelligence">
+  <div class="eyebrow reveal">
+    <div class="eyebrow-line"></div>
+    <div class="eyebrow-text">What SyncReady Does</div>
   </div>
-  <div class="price-item">
-    <div class="price-val">$59</div>
-    <div class="price-name">Catalog / mo</div>
+  <h2 class="section-title reveal">Five layers of<br><strong>sync intelligence</strong><br><em>no one else provides.</em></h2>
+  <p class="section-sub reveal">Your music is already on SoundCloud, Spotify, and your publisher's site. What it doesn't have is the intelligence layer that makes a supervisor stop, listen, and license.</p>
+
+  <div class="intel-grid">
+    <div class="intel-card reveal">
+      <span class="intel-icon">🎬</span>
+      <div class="intel-title">Scene Pitch Generator</div>
+      <div class="intel-body">Claude AI reads your sonic description, mood, and energy data and writes 3 specific scene pitches — the way an experienced music supervisor would describe your track to a director.</div>
+      <div class="intel-example">"Ideal for a slow-burn courtroom drama where the verdict is uncertain — the restraint does more damage than any dramatic swell would."</div>
+    </div>
+    <div class="intel-card reveal d1">
+      <span class="intel-icon">🔍</span>
+      <div class="intel-title">Emotional Keyword Mapping</div>
+      <div class="intel-body">Beyond "cinematic" and "tense" — Claude generates 10 emotional scene keywords supervisors actually search. The words that match the feeling of a moment, not just a genre.</div>
+      <div class="intel-example">"quiet devastation · last chance · surveillance footage · unlikely triumph · 3am decision"</div>
+    </div>
+    <div class="intel-card reveal d2">
+      <span class="intel-icon">📊</span>
+      <div class="intel-title">Editability Score</div>
+      <div class="intel-body">Waveform analysis grades your track on 7 real supervisor criteria: intro length, 30-second energy peak, breakdown presence, stinger ending, dynamic range, edit points, and instrumental availability.</div>
+      <div class="intel-example">"Score: 92/100 — lose 2 seconds off your intro and upload an instrumental to hit 100."</div>
+    </div>
+    <div class="intel-card reveal">
+      <span class="intel-icon">🏷️</span>
+      <div class="intel-title">One-Stop Certification</div>
+      <div class="intel-body">AI-guided Chain of Title screening — 3 targeted questions that catch uncleared samples, co-writer conflicts, and label encumbrances before they kill a deal. Badge reads "Artist-Declared · AI-Reviewed."</div>
+      <div class="intel-example">"Supervisors can license in a single call — no clearance risk, no back-and-forth."</div>
+    </div>
+    <div class="intel-card reveal d1">
+      <span class="intel-icon">🗺️</span>
+      <div class="intel-title">Catalog Gap Analysis</div>
+      <div class="intel-body">Pro and Catalog members get monthly AI analysis of their catalog's blind spots. What tempos are missing. What emotional tones are underrepresented. What supervisors in your genre are requesting that you're not making.</div>
+      <div class="intel-example">"Your catalog lacks high-energy tracks under 2:30 — the most requested length for trailer spots."</div>
+    </div>
+    <div class="intel-card reveal d2">
+      <span class="intel-icon">🔒</span>
+      <div class="intel-title">Metadata Locked Into File</div>
+      <div class="intel-body">Your contact info, scene pitches, Sync Score, and One-Stop status are burned directly into the WAV file. No matter where it travels — email, Slack, shared drives — your info goes with it forever.</div>
+      <div class="intel-example">"Downloaded 47 times. Your name and email are in every copy."</div>
+    </div>
+  </div>
+</section>
+
+<!-- KEYWORD DEMO -->
+<div class="demo-section">
+  <div class="demo-inner">
+    <div class="reveal">
+      <div class="eyebrow">
+        <div class="eyebrow-line"></div>
+        <div class="eyebrow-text">Emotional Keyword Demo</div>
+      </div>
+      <h2 class="section-title">The words supervisors<br><em>actually search.</em></h2>
+      <p class="section-sub" style="margin-bottom:0">Every platform tags your track as "cinematic" or "dark electronic." SyncReady goes deeper — generating the emotional scene language supervisors use when they're looking for music for a specific human moment. These keywords live in your file, your gallery, and every pitch.</p>
+    </div>
+    <div class="reveal d1">
+      <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:3px; color:var(--dim); text-transform:uppercase; margin-bottom:16px;">Track: "Ghost in the Frame" — 124 BPM · A Minor · Cinematic Electronic</div>
+      <div class="keyword-cloud">
+        <div class="kw active">late night pursuit</div>
+        <div class="kw active">quiet dread</div>
+        <div class="kw active">urban isolation</div>
+        <div class="kw active">surveillance footage</div>
+        <div class="kw active">last chance</div>
+        <div class="kw">building tension</div>
+        <div class="kw">cold open</div>
+        <div class="kw active">gritty resolve</div>
+        <div class="kw">morally grey</div>
+        <div class="kw active">3am decision</div>
+        <div class="kw dim-kw">action sequence</div>
+        <div class="kw dim-kw">cinematic</div>
+      </div>
+      <div style="margin-top:16px; font-family:'DM Mono',monospace; font-size:10px; color:var(--dim); letter-spacing:1px;">Highlighted = AI-generated emotional keywords · Faded = generic tags any platform provides</div>
+    </div>
   </div>
 </div>
 
-<div class="waveform">
-  <div class="wb"></div><div class="wb"></div><div class="wb"></div>
-  <div class="wb"></div><div class="wb"></div><div class="wb"></div>
-  <div class="wb"></div><div class="wb"></div>
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="eyebrow reveal">
+    <div class="eyebrow-line"></div>
+    <div class="eyebrow-text">Pricing</div>
+  </div>
+  <h2 class="section-title reveal">Full intelligence.<br><em>One track free.</em> Forever.</h2>
+  <p class="section-sub reveal">Try everything on one track — no watermarks, no limits, no credit card. When you're ready to run your full catalog through the intelligence layer, upgrade.</p>
+
+  <div class="pricing-grid">
+
+    <!-- FREE -->
+    <div class="price-card reveal">
+      <div class="price-tier">Starter</div>
+      <div class="price-amount"><sup>$</sup>0</div>
+      <div class="price-period">free · forever</div>
+      <div class="price-hook">Everything. One track. See exactly what the platform does before spending a dollar.</div>
+      <ul class="price-features">
+        <li class="li-on"><span class="fi fi-on">→</span> 1 track — fully processed</li>
+        <li class="li-on"><span class="fi fi-on">→</span> All 5 intelligence layers</li>
+        <li class="li-on"><span class="fi fi-on">→</span> 3 AI scene pitches</li>
+        <li class="li-on"><span class="fi fi-on">→</span> 10 emotional keywords</li>
+        <li class="li-on"><span class="fi fi-on">→</span> One-Stop certification</li>
+        <li class="li-on"><span class="fi fi-on">→</span> Full Sync Score breakdown</li>
+        <li class="li-on"><span class="fi fi-on">→</span> Public gallery — live immediately</li>
+        <li class="li-off"><span class="fi fi-off">→</span> No catalog gap analysis</li>
+        <li class="li-off"><span class="fi fi-off">→</span> No mood board matching</li>
+      </ul>
+      <button class="price-btn btn-outline">Start Free — No Card</button>
+    </div>
+
+    <!-- PRO -->
+    <div class="price-card featured reveal d1">
+      <div class="featured-label">Most Popular</div>
+      <div class="price-tier">Pro</div>
+      <div class="price-amount"><sup>$</sup>25</div>
+      <div class="price-period">per month</div>
+      <div class="price-hook">Your full catalog, fully intelligent. The complete sync readiness system for working artists.</div>
+      <ul class="price-features">
+        <li class="li-highlight"><span class="fi fi-on">→</span> 20 tracks</li>
+        <li class="li-on"><span class="fi fi-on">→</span> Everything in Starter</li>
+        <li class="li-highlight"><span class="fi fi-on">→</span> Catalog gap analysis — monthly</li>
+        <li class="li-highlight"><span class="fi fi-on">→</span> Mood board track pairing</li>
+        <li class="li-on"><span class="fi fi-on">→</span> Metadata locked into every file</li>
+        <li class="li-on"><span class="fi fi-on">→</span> Custom gallery URL</li>
+        <li class="li-on"><span class="fi fi-on">→</span> Re-analysis on re-upload</li>
+        <li class="li-on"><span class="fi fi-on">→</span> Priority processing</li>
+      </ul>
+      <button class="price-btn btn-gold">Join Waitlist — Pro</button>
+    </div>
+
+    <!-- CATALOG -->
+    <div class="price-card reveal d2">
+      <div class="price-tier">Catalog</div>
+      <div class="price-amount"><sup>$</sup>59</div>
+      <div class="price-period">per month</div>
+      <div class="price-hook">For artists treating sync as a primary income stream. Unlimited tracks, deep market intelligence.</div>
+      <ul class="price-features">
+        <li class="li-highlight"><span class="fi fi-on">→</span> Unlimited tracks</li>
+        <li class="li-on"><span class="fi fi-on">→</span> Everything in Pro</li>
+        <li class="li-highlight"><span class="fi fi-on">→</span> Supervisor search term report — monthly</li>
+        <li class="li-highlight"><span class="fi fi-on">→</span> Supervisor view + download analytics</li>
+        <li class="li-on"><span class="fi fi-on">→</span> Vanity URL: yourname.syncready.io</li>
+        <li class="li-on"><span class="fi fi-on">→</span> CSV export for PRO registration</li>
+        <li class="li-on"><span class="fi fi-on">→</span> Early access to new features</li>
+      </ul>
+      <button class="price-btn btn-outline">Join Waitlist — Catalog</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="section" style="padding-top:0;">
+  <div class="eyebrow reveal">
+    <div class="eyebrow-line"></div>
+    <div class="eyebrow-text">Why Not Just Use What You Have</div>
+  </div>
+  <h2 class="section-title reveal">Your publisher's site<br>doesn't do <em>any of this.</em></h2>
+
+  <div class="compare-table reveal">
+    <div class="compare-header">
+      <div class="compare-th">Feature</div>
+      <div class="compare-th highlight">SyncReady</div>
+      <div class="compare-th">Publisher / SoundCloud</div>
+      <div class="compare-th">Musicbed / Disco</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-td feature">AI scene pitch writing</div>
+      <div class="compare-td"><span class="check">✓</span></div>
+      <div class="compare-td"><span class="cross">—</span></div>
+      <div class="compare-td"><span class="cross">—</span></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-td feature">Emotional keyword mapping (10 per track)</div>
+      <div class="compare-td"><span class="check">✓</span></div>
+      <div class="compare-td"><span class="cross">—</span></div>
+      <div class="compare-td"><span class="cross">—</span></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-td feature">Waveform editability scoring</div>
+      <div class="compare-td"><span class="check">✓</span></div>
+      <div class="compare-td"><span class="cross">—</span></div>
+      <div class="compare-td"><span class="cross">—</span></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-td feature">One-Stop AI screening + badge</div>
+      <div class="compare-td"><span class="check">✓</span></div>
+      <div class="compare-td"><span class="cross">—</span></div>
+      <div class="compare-td"><span class="partial">Manual only</span></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-td feature">Catalog gap analysis</div>
+      <div class="compare-td"><span class="check">✓</span></div>
+      <div class="compare-td"><span class="cross">—</span></div>
+      <div class="compare-td"><span class="cross">—</span></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-td feature">Contact info burned into file</div>
+      <div class="compare-td"><span class="check">✓</span></div>
+      <div class="compare-td"><span class="cross">—</span></div>
+      <div class="compare-td"><span class="cross">—</span></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-td feature">You own your data + relationships</div>
+      <div class="compare-td"><span class="check">✓</span></div>
+      <div class="compare-td"><span class="cross">—</span></div>
+      <div class="compare-td"><span class="partial">Platform dependent</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <div class="eyebrow reveal" style="justify-content:center">
+    <span style="flex:1;max-width:60px;height:1px;background:var(--gold)"></span>
+    <div class="eyebrow-text">Ready?</div>
+    <span style="flex:1;max-width:60px;height:1px;background:var(--gold)"></span>
+  </div>
+  <h2 class="section-title reveal" style="text-align:center;max-width:700px;margin:0 auto 20px;">
+    Start with one track.<br><em>See everything.</em>
+  </h2>
+  <p class="section-sub reveal" style="text-align:center;margin:0 auto 40px;">No credit card. No watermarks. Full intelligence layer on your first track — free, forever.</p>
+  <div class="hero-form reveal" style="margin:0 auto 16px;">
+    <input type="email" id="emailInput2" placeholder="your@email.com" />
+    <button onclick="handleSubmit2()">Join the Waitlist</button>
+  </div>
+  <div class="form-note reveal">Early access members get their first month of Pro free.</div>
 </div>
 
-<div class="footer-note">SyncReady · Built for independent artists</div>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Sync<em>Ready</em></div>
+  <div class="footer-copy">© 2026 SyncReady · Built for independent artists · syncreadyio@gmail.com</div>
+  <div class="footer-copy">Sync Intelligence Platform</div>
+</footer>
 
 <script>
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Form handlers
 function handleSubmit() {
   const email = document.getElementById('emailInput').value;
-  if (!email || !email.includes('@')) {
-    alert('Please enter a valid email address.');
-    return;
-  }
-  // Saves email — replace this mailto with your Google Form or Mailchimp link later
-  window.location.href = 'mailto:syncreadyio@gmail.com?subject=Waitlist&body=Add me to the waitlist: ' + email;
+  if (!email || !email.includes('@')) { alert('Please enter a valid email.'); return; }
+  window.open('mailto:syncreadyio@gmail.com?subject=SyncReady Waitlist&body=Add me to the waitlist: ' + email);
   document.getElementById('successMsg').style.display = 'block';
   document.getElementById('emailInput').value = '';
 }
-</script>
 
+function handleSubmit2() {
+  const email = document.getElementById('emailInput2').value;
+  if (!email || !email.includes('@')) { alert('Please enter a valid email.'); return; }
+  window.open('mailto:syncreadyio@gmail.com?subject=SyncReady Waitlist&body=Add me to the waitlist: ' + email);
+  document.getElementById('emailInput2').value = '';
+}
+</script>
 </body>
 </html>
