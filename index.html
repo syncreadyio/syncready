@@ -4,27 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SyncReady — Sync Intelligence for Independent Artists</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@200;300;400;500;600&family=Outfit+Mono&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #06060a;
-  --surface: #0e0e16;
-  --card: #12121e;
-  --border: #1a1a2e;
-  --border2: #252540;
-  --white: #ede8f5;
-  --dim: #6b6880;
-  --dim2: #4a4760;
-  --gold: #c9974a;
-  --gold-soft: rgba(201,151,74,0.1);
-  --gold-border: rgba(201,151,74,0.25);
-  --purple: #7c5cf5;
-  --purple-soft: rgba(124,92,245,0.1);
-  --green: #2dd4a0;
-  --green-soft: rgba(45,212,160,0.1);
-  --red: #e85d4a;
+  --bg: #070709;
+  --surface: #0c0c10;
+  --card: #101018;
+  --border: #18182a;
+  --border2: #22223a;
+  --white: #eae6f4;
+  --mid: #908ca8;
+  --dim: #52506a;
+  --gold: #c8924a;
+  --gold2: #e8b06a;
+  --gold-soft: rgba(200,146,74,0.08);
+  --gold-border: rgba(200,146,74,0.22);
+  --teal: #3dcfb0;
+  --teal-soft: rgba(61,207,176,0.08);
+  --teal-border: rgba(61,207,176,0.22);
+  --film: #d4453a;
 }
 
 html { scroll-behavior: smooth; }
@@ -32,18 +32,18 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--white);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Outfit', sans-serif;
   font-weight: 300;
   line-height: 1.6;
   overflow-x: hidden;
 }
 
-/* ── GRAIN ── */
+/* ── FILM GRAIN ── */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 9999;
 }
@@ -52,39 +52,39 @@ body::after {
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 20px 60px;
+  z-index: 200;
+  padding: 22px 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(to bottom, rgba(6,6,10,0.98) 0%, transparent 100%);
-  transition: all 0.4s;
+  transition: all 0.5s;
 }
 
 nav.scrolled {
-  background: rgba(6,6,10,0.97);
+  background: rgba(7,7,9,0.95);
   border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(24px);
+  padding: 16px 64px;
 }
 
-.nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 24px;
-  font-weight: 600;
-  letter-spacing: 1px;
+.logo {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
   color: var(--white);
+  text-decoration: none;
 }
 
-.nav-logo em { font-style: italic; color: var(--gold); }
+.logo em { font-style: italic; color: var(--gold); }
 
-.nav-links {
+.nav-r {
   display: flex;
-  gap: 32px;
-  list-style: none;
   align-items: center;
+  gap: 36px;
 }
 
-.nav-links a {
+.nav-link {
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 1.5px;
@@ -94,221 +94,438 @@ nav.scrolled {
   transition: color 0.2s;
 }
 
-.nav-links a:hover { color: var(--white); }
+.nav-link:hover { color: var(--white); }
 
-.nav-cta {
-  border: 1px solid var(--gold-border) !important;
-  color: var(--gold) !important;
-  padding: 8px 20px;
-  transition: all 0.2s !important;
-  background: var(--gold-soft) !important;
+.nav-btn {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold);
+  padding: 10px 22px;
+  text-decoration: none;
+  transition: background 0.2s;
 }
 
-.nav-cta:hover { background: rgba(201,151,74,0.2) !important; color: var(--gold) !important; }
+.nav-btn:hover { background: var(--gold2); }
 
 /* ── HERO ── */
 .hero {
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 120px 60px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding-top: 80px;
   position: relative;
   overflow: hidden;
 }
 
-/* Ambient orbs */
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  pointer-events: none;
-}
-
-.orb-1 {
-  width: 600px; height: 400px;
-  background: rgba(124,92,245,0.04);
-  top: -100px; left: -200px;
-}
-
-.orb-2 {
-  width: 500px; height: 400px;
-  background: rgba(201,151,74,0.04);
-  top: 100px; right: -150px;
-}
-
-.orb-3 {
-  width: 400px; height: 300px;
-  background: rgba(45,212,160,0.03);
-  bottom: 0; left: 30%;
-}
-
-.hero-inner {
+/* Left panel */
+.hero-left {
+  padding: 80px 64px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: relative;
   z-index: 2;
-  max-width: 900px;
-  text-align: center;
+  border-right: 1px solid var(--border);
 }
 
-.hero-kicker {
+.hero-tag {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  border: 1px solid var(--gold-border);
+  gap: 8px;
   background: var(--gold-soft);
-  padding: 6px 18px;
-  font-family: 'DM Mono', monospace;
+  border: 1px solid var(--gold-border);
+  padding: 5px 14px;
   font-size: 10px;
+  font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 40px;
+  margin-bottom: 36px;
+  width: fit-content;
   opacity: 0;
-  animation: riseUp 0.8s ease 0.1s forwards;
+  animation: up 0.8s ease 0.1s forwards;
 }
 
-.hero-kicker::before {
-  content: '';
+.hero-tag-dot {
   width: 5px; height: 5px;
   border-radius: 50%;
   background: var(--gold);
   animation: blink 2s ease-in-out infinite;
 }
 
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
 
-.hero-headline {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(52px, 8vw, 100px);
-  font-weight: 300;
-  line-height: 0.95;
-  letter-spacing: -2px;
-  margin-bottom: 32px;
+h1 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(44px, 5vw, 72px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin-bottom: 28px;
   opacity: 0;
-  animation: riseUp 0.9s ease 0.25s forwards;
+  animation: up 0.9s ease 0.2s forwards;
 }
 
-.hero-headline strong {
-  font-weight: 600;
-  display: block;
-}
-
-.hero-headline em {
-  font-style: italic;
-  color: var(--gold);
-  display: block;
-}
+h1 em { font-style: italic; color: var(--gold); }
+h1 strong { font-weight: 700; }
 
 .hero-sub {
-  font-size: 17px;
-  color: var(--dim);
-  max-width: 580px;
-  margin: 0 auto 52px;
-  line-height: 1.8;
+  font-size: 16px;
+  color: var(--mid);
+  line-height: 1.85;
+  margin-bottom: 44px;
+  max-width: 480px;
   opacity: 0;
-  animation: riseUp 0.9s ease 0.4s forwards;
+  animation: up 0.9s ease 0.35s forwards;
 }
 
 .hero-sub strong { color: var(--white); font-weight: 500; }
 
-/* Email form */
-.hero-form {
+.email-row {
   display: flex;
-  max-width: 480px;
-  margin: 0 auto 16px;
+  gap: 0;
+  max-width: 420px;
   opacity: 0;
-  animation: riseUp 0.9s ease 0.55s forwards;
+  animation: up 0.9s ease 0.5s forwards;
 }
 
-.hero-form input {
+.email-row input {
   flex: 1;
-  background: rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.03);
   border: 1px solid var(--border2);
   border-right: none;
   color: var(--white);
-  padding: 16px 20px;
-  font-family: 'DM Sans', sans-serif;
+  padding: 14px 18px;
+  font-family: 'Outfit', sans-serif;
   font-size: 14px;
   outline: none;
   transition: border-color 0.2s;
 }
 
-.hero-form input:focus { border-color: var(--gold); }
-.hero-form input::placeholder { color: var(--dim2); }
+.email-row input:focus { border-color: var(--gold); }
+.email-row input::placeholder { color: var(--dim); }
 
-.hero-form button {
+.email-row button {
   background: var(--gold);
-  color: #06060a;
+  color: var(--bg);
   border: none;
-  padding: 16px 28px;
-  font-family: 'DM Mono', monospace;
+  padding: 14px 22px;
+  font-family: 'Outfit', sans-serif;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background 0.2s;
   white-space: nowrap;
 }
 
-.hero-form button:hover { background: #d4a454; }
+.email-row button:hover { background: var(--gold2); }
 
-.form-note {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 1px;
-  color: var(--dim2);
-  opacity: 0;
-  animation: riseUp 0.9s ease 0.65s forwards;
-}
-
-.success-msg {
-  display: none;
-  color: var(--green);
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+.form-micro {
   margin-top: 12px;
+  font-size: 11px;
+  color: var(--dim);
+  letter-spacing: 0.5px;
+  opacity: 0;
+  animation: up 0.9s ease 0.6s forwards;
 }
 
-/* ── INTELLIGENCE STRIP ── */
-.intel-strip {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 20px 60px;
+.success {
+  display: none;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+
+/* Right panel — cinematic mood reel preview */
+.hero-right {
+  position: relative;
+  overflow: hidden;
+  background: #050507;
+}
+
+.reel-preview {
+  position: absolute;
+  inset: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 48px;
-  flex-wrap: wrap;
-  background: var(--surface);
+  flex-direction: column;
+}
+
+/* Simulated video frame */
+.reel-frame {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a0a14 0%, #060610 50%, #0c0808 100%);
+}
+
+/* Cinematic scene simulation */
+.scene-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.scene-city {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 60%;
+  background: linear-gradient(to top,
+    rgba(15,10,30,0.9) 0%,
+    transparent 100%
+  );
+}
+
+/* City lights dots */
+.city-lights {
+  position: absolute;
+  bottom: 20%; left: 0; right: 0;
+  height: 30%;
   overflow: hidden;
 }
 
-.intel-item {
+.light-row {
+  display: flex;
+  gap: 0;
+  justify-content: space-around;
+  margin-bottom: 12px;
+}
+
+.light {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0;
+  animation: lightFlicker var(--d, 3s) ease-in-out var(--delay, 0s) infinite;
+}
+
+@keyframes lightFlicker {
+  0%,100% { opacity: var(--base, 0.3); }
+  50% { opacity: var(--peak, 0.8); }
+}
+
+/* Rain effect */
+.rain {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.raindrop {
+  position: absolute;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(150,160,200,0.3));
+  animation: fall linear infinite;
+  top: -100px;
+}
+
+@keyframes fall {
+  to { transform: translateY(120vh); }
+}
+
+/* Scanlines */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0,0,0,0.15) 2px,
+    rgba(0,0,0,0.15) 4px
+  );
+  pointer-events: none;
+}
+
+/* Letterbox bars */
+.letterbox-top,
+.letterbox-bottom {
+  position: absolute;
+  left: 0; right: 0;
+  height: 48px;
+  background: #000;
+  z-index: 3;
+}
+
+.letterbox-top { top: 0; }
+.letterbox-bottom { bottom: 0; }
+
+/* Scene text overlay */
+.scene-overlay {
+  position: absolute;
+  bottom: 60px;
+  left: 0; right: 0;
+  padding: 0 32px;
+  z-index: 5;
+}
+
+.scene-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.8;
+  margin-bottom: 6px;
+}
+
+.scene-desc {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.4;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+}
+
+/* Track info bar */
+.track-bar {
+  background: rgba(0,0,0,0.8);
+  border-top: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.track-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.play-btn {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--bg);
+  cursor: pointer;
+  flex-shrink: 0;
+  animation: playPulse 2s ease-in-out infinite;
+}
+
+@keyframes playPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(200,146,74,0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(200,146,74,0); }
+}
+
+.track-name-display {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.track-meta-display {
+  font-size: 10px;
+  color: var(--mid);
+  letter-spacing: 1px;
+  font-family: 'Outfit', monospace;
+}
+
+.track-bar-right {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
+}
+
+.reel-badge {
+  background: rgba(200,146,74,0.12);
+  border: 1px solid var(--gold-border);
+  color: var(--gold);
+  font-size: 9px;
+  font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
+  padding: 3px 10px;
+}
+
+.score-display {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--teal);
+}
+
+.score-sub {
+  font-size: 8px;
   color: var(--dim);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Caption below hero right */
+.hero-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  padding: 10px 24px;
+  background: var(--border);
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 1px;
+  text-align: center;
+  font-family: 'Outfit', monospace;
+  z-index: 10;
+}
+
+/* ── TICKER ── */
+.ticker {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  padding: 14px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.ticker-inner {
+  display: flex;
+  gap: 0;
+  animation: tickerScroll 30s linear infinite;
   white-space: nowrap;
 }
 
-.intel-dot {
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--gold);
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 40px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--dim);
   flex-shrink: 0;
 }
 
-/* ── SECTIONS ── */
-.section {
-  padding: 100px 60px;
-  max-width: 1200px;
+.ticker-sep {
+  color: var(--gold);
+  font-size: 8px;
+}
+
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ── FEATURES ── */
+.features {
+  padding: 100px 64px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
@@ -316,41 +533,40 @@ nav.scrolled {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
-.eyebrow-line { width: 28px; height: 1px; background: var(--gold); }
+.ey-line { width: 24px; height: 1px; background: var(--gold); }
 
-.eyebrow-text {
-  font-family: 'DM Mono', monospace;
+.ey-text {
   font-size: 10px;
+  font-weight: 600;
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--gold);
 }
 
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(36px, 5vw, 60px);
-  font-weight: 300;
-  line-height: 1.05;
-  letter-spacing: -1px;
-  margin-bottom: 20px;
+.feat-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
 }
 
-.section-title strong { font-weight: 600; }
-.section-title em { font-style: italic; color: var(--gold); }
+.feat-title em { font-style: italic; color: var(--gold); }
+.feat-title strong { font-weight: 700; }
 
-.section-sub {
+.feat-sub {
   font-size: 15px;
-  color: var(--dim);
-  max-width: 580px;
+  color: var(--mid);
+  max-width: 560px;
   line-height: 1.8;
   margin-bottom: 52px;
 }
 
-/* ── INTELLIGENCE FEATURES ── */
-.intel-grid {
+.feat-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
@@ -358,70 +574,72 @@ nav.scrolled {
   border: 1px solid var(--border);
 }
 
-.intel-card {
+.feat-card {
   background: var(--card);
-  padding: 36px 32px;
+  padding: 36px 28px;
   position: relative;
   overflow: hidden;
   transition: background 0.3s;
 }
 
-.intel-card:hover { background: #151525; }
+.feat-card:hover { background: #131320; }
 
-.intel-card::after {
+.feat-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(to right, var(--gold), transparent);
   opacity: 0;
   transition: opacity 0.3s;
 }
 
-.intel-card:hover::after { opacity: 1; }
+.feat-card:hover::before { opacity: 1; }
+.feat-card.gold::before { background: linear-gradient(to right, var(--gold), transparent); }
+.feat-card.teal::before { background: linear-gradient(to right, var(--teal), transparent); }
 
-.intel-icon {
-  font-size: 24px;
-  margin-bottom: 20px;
-  display: block;
-}
+.feat-icon { font-size: 22px; margin-bottom: 18px; display: block; }
 
-.intel-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 12px;
+.feat-card-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 10px;
   line-height: 1.2;
 }
 
-.intel-body {
+.feat-card-body {
   font-size: 13px;
-  color: var(--dim);
+  color: var(--mid);
   line-height: 1.75;
 }
 
-.intel-example {
-  margin-top: 16px;
-  padding: 12px 14px;
-  background: rgba(201,151,74,0.06);
+.feat-example {
+  margin-top: 14px;
+  padding: 10px 14px;
   border-left: 2px solid var(--gold);
-  font-family: 'DM Mono', monospace;
+  background: var(--gold-soft);
   font-size: 11px;
-  color: var(--gold);
+  color: #c8a070;
   line-height: 1.6;
   font-style: italic;
 }
 
-/* ── KEYWORDS DEMO ── */
-.demo-section {
+.feat-example.teal-ex {
+  border-left-color: var(--teal);
+  background: var(--teal-soft);
+  color: #5acfb8;
+}
+
+/* ── MOOD REEL SHOWCASE ── */
+.reel-section {
   background: var(--surface);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 100px 60px;
+  padding: 100px 64px;
 }
 
-.demo-inner {
-  max-width: 1200px;
+.reel-inner {
+  max-width: 1300px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -429,56 +647,106 @@ nav.scrolled {
   align-items: center;
 }
 
-.keyword-cloud {
+.reel-cards {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reel-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.reel-card:hover { border-color: var(--border2); }
+.reel-card.active { border-color: var(--gold-border); }
+
+.reel-card-header {
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.reel-card-track {
+  display: flex;
+  align-items: center;
   gap: 10px;
 }
 
-.kw {
-  padding: 8px 16px;
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 1px;
-  border: 1px solid var(--border2);
+.reel-play-sm {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.reel-card.active .reel-play-sm {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+.reel-track-name { font-size: 13px; font-weight: 500; }
+.reel-track-meta { font-size: 10px; color: var(--dim); font-family: 'Outfit', monospace; letter-spacing: 1px; margin-top: 1px; }
+
+.reel-status {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+}
+
+.reel-status.active { color: var(--gold); background: var(--gold-soft); border: 1px solid var(--gold-border); }
+.reel-status.available { color: var(--dim); background: transparent; border: 1px solid var(--border2); }
+.reel-status.cooldown { color: var(--teal); background: var(--teal-soft); border: 1px solid var(--teal-border); }
+
+.reel-card-scene {
+  padding: 12px 18px;
+  font-size: 12px;
+  color: var(--mid);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.reel-slot-empty {
+  background: var(--card);
+  border: 1px dashed var(--border2);
+  padding: 20px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   color: var(--dim);
-  transition: all 0.3s;
-  cursor: default;
-  animation: fadeIn 0.5s ease both;
+  font-size: 12px;
 }
 
-.kw:hover {
-  border-color: var(--gold-border);
-  color: var(--gold);
-  background: var(--gold-soft);
+.empty-icon {
+  width: 32px; height: 32px;
+  border: 1px dashed var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
 }
-
-.kw.active {
-  border-color: var(--gold-border);
-  color: var(--gold);
-  background: var(--gold-soft);
-}
-
-.kw.dim-kw { opacity: 0.35; }
-
-@keyframes fadeIn { from{opacity:0;transform:scale(0.9)} to{opacity:1;transform:scale(1)} }
-
-/* stagger keyword animations */
-.kw:nth-child(1){animation-delay:0.1s}
-.kw:nth-child(2){animation-delay:0.15s}
-.kw:nth-child(3){animation-delay:0.2s}
-.kw:nth-child(4){animation-delay:0.25s}
-.kw:nth-child(5){animation-delay:0.3s}
-.kw:nth-child(6){animation-delay:0.35s}
-.kw:nth-child(7){animation-delay:0.4s}
-.kw:nth-child(8){animation-delay:0.45s}
-.kw:nth-child(9){animation-delay:0.5s}
-.kw:nth-child(10){animation-delay:0.55s}
-.kw:nth-child(11){animation-delay:0.6s}
-.kw:nth-child(12){animation-delay:0.65s}
 
 /* ── PRICING ── */
-.pricing-grid {
+.pricing {
+  padding: 100px 64px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.price-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
@@ -487,258 +755,236 @@ nav.scrolled {
   margin-top: 52px;
 }
 
-.price-card {
+.p-card {
   background: var(--card);
   padding: 40px 32px;
   position: relative;
   transition: background 0.3s;
 }
 
-.price-card:hover { background: #151525; }
+.p-card:hover { background: #131320; }
 
-.price-card.featured {
-  background: #0f0f20;
+.p-card.featured {
+  background: #0e0e1c;
   border: 1px solid var(--gold-border);
   margin: -1px;
   z-index: 2;
 }
 
-.featured-label {
+.p-ribbon {
   position: absolute;
-  top: -1px; right: 24px;
+  top: 0; right: 0;
   background: var(--gold);
-  color: #06060a;
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  font-weight: 500;
+  color: var(--bg);
+  font-size: 8px;
+  font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  padding: 4px 12px;
+  padding: 5px 14px;
 }
 
-.price-tier {
-  font-family: 'DM Mono', monospace;
+.p-tier {
   font-size: 10px;
+  font-weight: 600;
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--dim);
   margin-bottom: 20px;
 }
 
-.price-amount {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 64px;
-  font-weight: 300;
+.p-amount {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 60px;
+  font-weight: 400;
   line-height: 1;
   margin-bottom: 4px;
 }
 
-.price-amount sup {
-  font-size: 24px;
+.p-amount sup {
+  font-size: 22px;
   vertical-align: top;
-  margin-top: 12px;
+  margin-top: 10px;
   display: inline-block;
-  color: var(--dim);
+  color: var(--mid);
+  font-weight: 400;
 }
 
-.price-period {
-  font-family: 'DM Mono', monospace;
+.p-period {
   font-size: 11px;
   color: var(--dim);
-  margin-bottom: 32px;
   letter-spacing: 1px;
+  margin-bottom: 8px;
+  font-family: 'Outfit', monospace;
 }
 
-.price-hook {
+.p-hook {
   font-size: 14px;
   color: var(--white);
-  font-weight: 500;
-  margin-bottom: 24px;
-  padding-bottom: 24px;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  line-height: 1.4;
+  margin-bottom: 24px;
 }
 
-.price-features {
+.p-feats {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 11px;
   margin-bottom: 32px;
 }
 
-.price-features li {
+.p-feats li {
   font-size: 13px;
-  color: var(--dim);
   display: flex;
   gap: 10px;
   align-items: flex-start;
   line-height: 1.5;
 }
 
-.fi { flex-shrink: 0; margin-top: 1px; }
-.fi-on { color: var(--gold); }
-.fi-off { color: var(--border2); }
-.li-on { color: #c4bfd8; }
-.li-off { color: var(--dim2); }
-.li-highlight { color: var(--white); font-weight: 500; }
+.on { color: #c0bcd6; }
+.on .arr { color: var(--gold); flex-shrink: 0; }
+.off { color: var(--dim); }
+.off .arr { color: var(--border2); flex-shrink: 0; }
+.hi { color: var(--white); font-weight: 500; }
+.hi .arr { color: var(--gold2); flex-shrink: 0; }
+.reel-feat { color: var(--gold2); font-weight: 500; }
+.reel-feat .arr { color: var(--gold); flex-shrink: 0; }
 
-.price-btn {
+.p-btn {
   display: block;
+  width: 100%;
   text-align: center;
-  padding: 13px 20px;
-  font-family: 'DM Mono', monospace;
+  padding: 13px;
+  font-family: 'Outfit', sans-serif;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  text-decoration: none;
   cursor: pointer;
   border: none;
   transition: all 0.2s;
-  width: 100%;
+  text-decoration: none;
 }
 
-.btn-outline {
+.btn-ghost-gold {
+  background: transparent;
+  border: 1px solid var(--gold-border);
+  color: var(--gold);
+}
+
+.btn-ghost-gold:hover { background: var(--gold-soft); }
+
+.btn-solid-gold {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+.btn-solid-gold:hover { background: var(--gold2); }
+
+.btn-ghost {
   background: transparent;
   border: 1px solid var(--border2);
-  color: var(--dim);
+  color: var(--mid);
 }
 
-.btn-outline:hover { border-color: var(--white); color: var(--white); }
-
-.btn-gold {
-  background: var(--gold);
-  color: #06060a;
-}
-
-.btn-gold:hover { background: #d4a454; }
-
-/* ── COMPARISON ── */
-.compare-table {
-  border: 1px solid var(--border);
-  overflow: hidden;
-  margin-top: 52px;
-}
-
-.compare-header {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-}
-
-.compare-th {
-  padding: 14px 20px;
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--dim);
-  border-right: 1px solid var(--border);
-}
-
-.compare-th:last-child { border-right: none; }
-.compare-th.highlight { color: var(--gold); }
-
-.compare-row {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.2s;
-}
-
-.compare-row:last-child { border-bottom: none; }
-.compare-row:hover { background: rgba(201,151,74,0.02); }
-
-.compare-td {
-  padding: 14px 20px;
-  font-size: 13px;
-  color: var(--dim);
-  border-right: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-}
-
-.compare-td:last-child { border-right: none; }
-.compare-td.feature { color: var(--white); font-weight: 400; }
-.check { color: var(--green); font-size: 15px; }
-.cross { color: var(--border2); font-size: 15px; }
-.partial { color: var(--gold); font-size: 12px; font-style: italic; }
+.btn-ghost:hover { border-color: var(--white); color: var(--white); }
 
 /* ── FINAL CTA ── */
-.final-cta {
+.final {
   text-align: center;
-  padding: 140px 60px;
+  padding: 120px 64px;
   position: relative;
   overflow: hidden;
 }
 
-.final-cta::before {
+.final::before {
   content: '';
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%,-50%);
-  width: 700px; height: 400px;
-  background: radial-gradient(ellipse, rgba(201,151,74,0.05) 0%, transparent 70%);
+  width: 800px; height: 400px;
+  background: radial-gradient(ellipse, rgba(200,146,74,0.04) 0%, transparent 70%);
   pointer-events: none;
+}
+
+.final-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  max-width: 700px;
+  margin: 0 auto 20px;
+}
+
+.final-title em { font-style: italic; color: var(--gold); }
+
+.final-sub {
+  font-size: 15px;
+  color: var(--mid);
+  max-width: 500px;
+  margin: 0 auto 40px;
+  line-height: 1.8;
 }
 
 /* ── FOOTER ── */
 footer {
   border-top: 1px solid var(--border);
-  padding: 32px 60px;
+  padding: 28px 64px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 12px;
 }
 
 .footer-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
-  font-weight: 600;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .footer-logo em { font-style: italic; color: var(--gold); }
 
 .footer-copy {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 1px;
-  color: var(--dim2);
+  font-size: 11px;
+  color: var(--dim);
+  letter-spacing: 0.5px;
+  font-family: 'Outfit', monospace;
 }
 
 /* ── ANIMATIONS ── */
-@keyframes riseUp {
-  from { opacity: 0; transform: translateY(24px); }
+@keyframes up {
+  from { opacity: 0; transform: translateY(22px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(22px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal.d1 { transition-delay: 0.1s; }
-.reveal.d2 { transition-delay: 0.2s; }
-.reveal.d3 { transition-delay: 0.3s; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; }
 
-@media (max-width: 900px) {
-  nav { padding: 16px 24px; }
-  .nav-links { display: none; }
-  .hero, .section, .final-cta { padding-left: 24px; padding-right: 24px; }
-  .intel-grid, .pricing-grid { grid-template-columns: 1fr; gap: 16px; background: transparent; border: none; }
-  .intel-card, .price-card { border: 1px solid var(--border); }
-  .price-card.featured { margin: 0; }
-  .demo-inner { grid-template-columns: 1fr; gap: 40px; }
-  .demo-section { padding: 60px 24px; }
-  .intel-strip { padding: 20px 24px; gap: 20px; }
-  .compare-header, .compare-row { grid-template-columns: 1.5fr 1fr 1fr; }
-  .compare-th:nth-child(3), .compare-td:nth-child(3) { display: none; }
+@media (max-width: 960px) {
+  nav, nav.scrolled { padding: 16px 24px; }
+  .nav-r .nav-link { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 80px 24px 48px; border-right: none; border-bottom: 1px solid var(--border); }
+  .hero-right { height: 400px; }
+  .features, .pricing, .final { padding: 72px 24px; }
+  .reel-section { padding: 72px 24px; }
+  .reel-inner { grid-template-columns: 1fr; gap: 48px; }
+  .feat-grid, .price-grid { grid-template-columns: 1fr; gap: 12px; background: transparent; border: none; }
+  .feat-card, .p-card { border: 1px solid var(--border); }
+  .p-card.featured { margin: 0; }
   footer { padding: 24px; flex-direction: column; text-align: center; }
 }
 </style>
@@ -747,320 +993,391 @@ footer {
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="nav-logo">Sync<em>Ready</em></div>
-  <ul class="nav-links">
-    <li><a href="#intelligence">Intelligence</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#pricing" class="nav-cta">Join Waitlist</a></li>
-  </ul>
+  <a class="logo" href="#">Sync<em>Ready</em></a>
+  <div class="nav-r">
+    <a href="#features" class="nav-link">Features</a>
+    <a href="#reels" class="nav-link">Mood Reels</a>
+    <a href="#pricing" class="nav-link">Pricing</a>
+    <a href="#pricing" class="nav-btn">Join Waitlist</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-  <div class="hero-inner">
-    <div class="hero-kicker">Sync Intelligence for Independent Artists</div>
-    <h1 class="hero-headline">
-      Don't just prep
-      <strong>your music.</strong>
-      <em>Understand it.</em>
+  <!-- Left -->
+  <div class="hero-left">
+    <div class="hero-tag">
+      <div class="hero-tag-dot"></div>
+      Sync Intelligence Platform · Now in Beta
+    </div>
+    <h1>
+      Great music gets<br>
+      ignored every day.<br>
+      <em>Not yours.</em>
     </h1>
     <p class="hero-sub">
-      SyncReady doesn't just tag your tracks — it <strong>thinks like a music supervisor.</strong> Upload once and get AI-generated scene pitches, emotional keyword mapping, catalog gap analysis, and a readiness score that tells you exactly what to fix and what to make next.
+      SyncReady doesn't just prep your tracks — it <strong>thinks like a music supervisor.</strong> AI scene pitches, emotional keyword mapping, waveform scoring, One-Stop certification, and cinematic mood reels. Everything a supervisor needs to say yes — <strong>built into your catalog automatically.</strong>
     </p>
-    <div class="hero-form">
-      <input type="email" id="emailInput" placeholder="your@email.com" />
-      <button onclick="handleSubmit()">Join Waitlist</button>
+    <div class="email-row">
+      <input type="email" id="e1" placeholder="your@email.com" />
+      <button onclick="sub('e1')">Join Waitlist</button>
     </div>
-    <div class="form-note">Free to start · 1 full track, no limits · No credit card required</div>
-    <div class="success-msg" id="successMsg">✓ You're on the list — we'll be in touch.</div>
+    <div class="form-micro">Free to start · 1 full track, no limits · No credit card</div>
+    <div class="success" id="s1">✓ You're on the list. Early access = first month Pro free.</div>
+  </div>
+
+  <!-- Right — Mood Reel Preview -->
+  <div class="hero-right">
+    <div class="reel-preview">
+      <div class="reel-frame">
+        <!-- Letterbox -->
+        <div class="letterbox-top"></div>
+        <div class="letterbox-bottom"></div>
+
+        <!-- Scene layers -->
+        <div class="scene-layer">
+          <div class="city-lights">
+            <div class="light-row">
+              <div class="light" style="--d:2.3s;--delay:0s;--base:0.2;--peak:0.7"></div>
+              <div class="light" style="--d:3.1s;--delay:0.4s;--base:0.3;--peak:0.9"></div>
+              <div class="light" style="--d:1.8s;--delay:0.8s;--base:0.15;--peak:0.6"></div>
+              <div class="light" style="--d:2.7s;--delay:0.2s;--base:0.25;--peak:0.8"></div>
+              <div class="light" style="--d:3.4s;--delay:1.1s;--base:0.2;--peak:0.7"></div>
+              <div class="light" style="--d:2.1s;--delay:0.6s;--base:0.3;--peak:0.85"></div>
+              <div class="light" style="--d:2.9s;--delay:0.9s;--base:0.2;--peak:0.75"></div>
+              <div class="light" style="--d:1.6s;--delay:0.3s;--base:0.25;--peak:0.9"></div>
+            </div>
+            <div class="light-row">
+              <div class="light" style="--d:3.2s;--delay:0.5s;--base:0.3;--peak:0.8"></div>
+              <div class="light" style="--d:2.4s;--delay:0.1s;--base:0.2;--peak:0.65"></div>
+              <div class="light" style="--d:1.9s;--delay:0.7s;--base:0.35;--peak:0.9"></div>
+              <div class="light" style="--d:3.0s;--delay:1.2s;--base:0.15;--peak:0.7"></div>
+              <div class="light" style="--d:2.6s;--delay:0.4s;--base:0.25;--peak:0.8"></div>
+              <div class="light" style="--d:1.7s;--delay:0.9s;--base:0.3;--peak:0.85"></div>
+              <div class="light" style="--d:3.3s;--delay:0.2s;--base:0.2;--peak:0.75"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rain -->
+        <div class="rain" id="rain"></div>
+
+        <!-- Scanlines -->
+        <div class="scanlines"></div>
+
+        <!-- Scene description -->
+        <div class="scene-overlay">
+          <div class="scene-label">AI Mood Reel · Catalog Feature</div>
+          <div class="scene-desc">"Late night pursuit through rain-slicked city streets — morally grey, no clear exit."</div>
+        </div>
+      </div>
+
+      <!-- Track bar -->
+      <div class="track-bar">
+        <div class="track-bar-left">
+          <div class="play-btn">▶</div>
+          <div>
+            <div class="track-name-display">Ghost in the Frame</div>
+            <div class="track-meta-display">124 BPM · A Minor · Cinematic Electronic</div>
+          </div>
+        </div>
+        <div class="track-bar-right">
+          <div class="reel-badge">🎬 Mood Reel Active</div>
+          <div style="text-align:center">
+            <div class="score-display">92</div>
+            <div class="score-sub">Sync Score</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-caption">Catalog tier · AI Cinematic Mood Reel · Generated from scene pitch · Powered by Kling AI</div>
+    </div>
   </div>
 </section>
 
-<!-- INTEL STRIP -->
-<div class="intel-strip">
-  <div class="intel-item"><div class="intel-dot"></div>AI Scene Pitch Generation</div>
-  <div class="intel-item"><div class="intel-dot"></div>Emotional Keyword Mapping</div>
-  <div class="intel-item"><div class="intel-dot"></div>One-Stop Certification</div>
-  <div class="intel-item"><div class="intel-dot"></div>Editability Score</div>
-  <div class="intel-item"><div class="intel-dot"></div>Catalog Gap Analysis</div>
-  <div class="intel-item"><div class="intel-dot"></div>Metadata Locked Into File</div>
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner" id="ticker">
+    <span class="ticker-item">AI Scene Pitches <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Emotional Keyword Mapping <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">One-Stop Certification <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Waveform Editability Score <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Catalog Gap Analysis <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Cinematic Mood Reels <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Metadata Locked Into File <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Supervisor-Ready In 60 Seconds <span class="ticker-sep">◆</span></span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ticker-item">AI Scene Pitches <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Emotional Keyword Mapping <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">One-Stop Certification <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Waveform Editability Score <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Catalog Gap Analysis <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Cinematic Mood Reels <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Metadata Locked Into File <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Supervisor-Ready In 60 Seconds <span class="ticker-sep">◆</span></span>
+  </div>
 </div>
 
-<!-- INTELLIGENCE SECTION -->
-<section class="section" id="intelligence">
+<!-- FEATURES -->
+<section class="features" id="features">
   <div class="eyebrow reveal">
-    <div class="eyebrow-line"></div>
-    <div class="eyebrow-text">What SyncReady Does</div>
+    <div class="ey-line"></div>
+    <div class="ey-text">The Intelligence Layer</div>
   </div>
-  <h2 class="section-title reveal">Five layers of<br><strong>sync intelligence</strong><br><em>no one else provides.</em></h2>
-  <p class="section-sub reveal">Your music is already on SoundCloud, Spotify, and your publisher's site. What it doesn't have is the intelligence layer that makes a supervisor stop, listen, and license.</p>
+  <h2 class="feat-title reveal">Six things no publisher,<br>SoundCloud, or licensing site<br><em>will ever do for you.</em></h2>
+  <p class="feat-sub reveal">Your music is already out there. What it's missing is the intelligence layer that makes a supervisor stop, listen, and license.</p>
 
-  <div class="intel-grid">
-    <div class="intel-card reveal">
-      <span class="intel-icon">🎬</span>
-      <div class="intel-title">Scene Pitch Generator</div>
-      <div class="intel-body">Claude AI reads your sonic description, mood, and energy data and writes 3 specific scene pitches — the way an experienced music supervisor would describe your track to a director.</div>
-      <div class="intel-example">"Ideal for a slow-burn courtroom drama where the verdict is uncertain — the restraint does more damage than any dramatic swell would."</div>
+  <div class="feat-grid">
+    <div class="feat-card gold reveal">
+      <span class="feat-icon">🎬</span>
+      <div class="feat-card-title">Scene Pitch Generator</div>
+      <div class="feat-card-body">Claude AI writes 3 scene-specific pitches per track — the way a seasoned music supervisor would describe your music to a director. Human language, not database tags.</div>
+      <div class="feat-example">"Ideal for a slow-burn courtroom drama where the verdict is uncertain — the restraint does more damage than any swell would."</div>
     </div>
-    <div class="intel-card reveal d1">
-      <span class="intel-icon">🔍</span>
-      <div class="intel-title">Emotional Keyword Mapping</div>
-      <div class="intel-body">Beyond "cinematic" and "tense" — Claude generates 10 emotional scene keywords supervisors actually search. The words that match the feeling of a moment, not just a genre.</div>
-      <div class="intel-example">"quiet devastation · last chance · surveillance footage · unlikely triumph · 3am decision"</div>
+    <div class="feat-card gold reveal d1">
+      <span class="feat-icon">🔍</span>
+      <div class="feat-card-title">Emotional Keyword Mapping</div>
+      <div class="feat-card-body">10 emotional scene keywords per track — the words supervisors actually search when hunting for a feeling, not a genre. Burned into your file and gallery.</div>
+      <div class="feat-example">"quiet devastation · surveillance footage · 3am decision · unlikely triumph · last chance"</div>
     </div>
-    <div class="intel-card reveal d2">
-      <span class="intel-icon">📊</span>
-      <div class="intel-title">Editability Score</div>
-      <div class="intel-body">Waveform analysis grades your track on 7 real supervisor criteria: intro length, 30-second energy peak, breakdown presence, stinger ending, dynamic range, edit points, and instrumental availability.</div>
-      <div class="intel-example">"Score: 92/100 — lose 2 seconds off your intro and upload an instrumental to hit 100."</div>
+    <div class="feat-card gold reveal d2">
+      <span class="feat-icon">📊</span>
+      <div class="feat-card-title">Editability Score</div>
+      <div class="feat-card-body">Waveform analysis grades your track on 7 real supervisor criteria — intro length, 30s peak, breakdown, stinger ending, dynamic range, edit points, instrumental. With line-item fix tips.</div>
+      <div class="feat-example">"Score: 92/100 — trim 2s off your intro and upload an instrumental to hit 100."</div>
     </div>
-    <div class="intel-card reveal">
-      <span class="intel-icon">🏷️</span>
-      <div class="intel-title">One-Stop Certification</div>
-      <div class="intel-body">AI-guided Chain of Title screening — 3 targeted questions that catch uncleared samples, co-writer conflicts, and label encumbrances before they kill a deal. Badge reads "Artist-Declared · AI-Reviewed."</div>
-      <div class="intel-example">"Supervisors can license in a single call — no clearance risk, no back-and-forth."</div>
+    <div class="feat-card teal reveal">
+      <span class="feat-icon">🏷️</span>
+      <div class="feat-card-title">One-Stop Certification</div>
+      <div class="feat-card-body">AI-guided Chain of Title screening catches uncleared samples, co-writer conflicts, and label issues before they kill a deal. Badge reads "Artist-Declared · AI-Reviewed."</div>
+      <div class="feat-example teal-ex">"Supervisors license in a single call — no clearance risk, no back-and-forth."</div>
     </div>
-    <div class="intel-card reveal d1">
-      <span class="intel-icon">🗺️</span>
-      <div class="intel-title">Catalog Gap Analysis</div>
-      <div class="intel-body">Pro and Catalog members get monthly AI analysis of their catalog's blind spots. What tempos are missing. What emotional tones are underrepresented. What supervisors in your genre are requesting that you're not making.</div>
-      <div class="intel-example">"Your catalog lacks high-energy tracks under 2:30 — the most requested length for trailer spots."</div>
+    <div class="feat-card teal reveal d1">
+      <span class="feat-icon">🗺️</span>
+      <div class="feat-card-title">Catalog Gap Analysis</div>
+      <div class="feat-card-body">Monthly AI analysis of your catalog's blind spots — what tempos are missing, what emotional tones are underrepresented, what supervisors in your genre keep requesting that you're not making.</div>
+      <div class="feat-example teal-ex">"Your catalog lacks tracks under 2:30 — the most-requested length for trailer spots."</div>
     </div>
-    <div class="intel-card reveal d2">
-      <span class="intel-icon">🔒</span>
-      <div class="intel-title">Metadata Locked Into File</div>
-      <div class="intel-body">Your contact info, scene pitches, Sync Score, and One-Stop status are burned directly into the WAV file. No matter where it travels — email, Slack, shared drives — your info goes with it forever.</div>
-      <div class="intel-example">"Downloaded 47 times. Your name and email are in every copy."</div>
+    <div class="feat-card gold reveal d2">
+      <span class="feat-icon">🎥</span>
+      <div class="feat-card-title">Cinematic Mood Reels</div>
+      <div class="feat-card-body">Catalog exclusive. AI generates a 10–15 second cinematic scene from your track's pitch — rain-soaked streets, empty courtrooms, neon-lit alleys. Supervisors don't just hear the vibe. They see it.</div>
+      <div class="feat-example">"3 active reel slots. Swap any reel after 30 days as your catalog evolves."</div>
     </div>
   </div>
 </section>
 
-<!-- KEYWORD DEMO -->
-<div class="demo-section">
-  <div class="demo-inner">
+<!-- MOOD REEL SHOWCASE -->
+<div class="reel-section" id="reels">
+  <div class="reel-inner">
     <div class="reveal">
       <div class="eyebrow">
-        <div class="eyebrow-line"></div>
-        <div class="eyebrow-text">Emotional Keyword Demo</div>
+        <div class="ey-line"></div>
+        <div class="ey-text">Catalog Exclusive Feature</div>
       </div>
-      <h2 class="section-title">The words supervisors<br><em>actually search.</em></h2>
-      <p class="section-sub" style="margin-bottom:0">Every platform tags your track as "cinematic" or "dark electronic." SyncReady goes deeper — generating the emotional scene language supervisors use when they're looking for music for a specific human moment. These keywords live in your file, your gallery, and every pitch.</p>
+      <h2 class="feat-title">3 active mood reels.<br><em>Swap anytime.</em><br>Always evolving.</h2>
+      <p class="feat-sub" style="margin-bottom:0">Your 3 most important tracks get a cinematic scene generated from their AI pitch. Supervisors browsing your gallery don't just audition music — they watch a mood reference you didn't have to film. Swap any reel after 30 days as your catalog grows. No monthly allowance. No wasted credits. Your best 3 tracks, always dressed for the room.</p>
     </div>
-    <div class="reveal d1">
-      <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:3px; color:var(--dim); text-transform:uppercase; margin-bottom:16px;">Track: "Ghost in the Frame" — 124 BPM · A Minor · Cinematic Electronic</div>
-      <div class="keyword-cloud">
-        <div class="kw active">late night pursuit</div>
-        <div class="kw active">quiet dread</div>
-        <div class="kw active">urban isolation</div>
-        <div class="kw active">surveillance footage</div>
-        <div class="kw active">last chance</div>
-        <div class="kw">building tension</div>
-        <div class="kw">cold open</div>
-        <div class="kw active">gritty resolve</div>
-        <div class="kw">morally grey</div>
-        <div class="kw active">3am decision</div>
-        <div class="kw dim-kw">action sequence</div>
-        <div class="kw dim-kw">cinematic</div>
+    <div class="reel-cards reveal d1">
+      <!-- Active slot 1 -->
+      <div class="reel-card active">
+        <div class="reel-card-header">
+          <div class="reel-track">
+            <div class="reel-play-sm">▶</div>
+            <div>
+              <div class="reel-track-name">Ghost in the Frame</div>
+              <div class="reel-track-meta">124 BPM · A Minor · Cinematic</div>
+            </div>
+          </div>
+          <div class="reel-status active">🎬 Active</div>
+        </div>
+        <div class="reel-card-scene">"Late night pursuit through rain-slicked streets — morally grey, no clear exit."</div>
       </div>
-      <div style="margin-top:16px; font-family:'DM Mono',monospace; font-size:10px; color:var(--dim); letter-spacing:1px;">Highlighted = AI-generated emotional keywords · Faded = generic tags any platform provides</div>
+
+      <!-- Active slot 2 -->
+      <div class="reel-card active">
+        <div class="reel-card-header">
+          <div class="reel-track">
+            <div class="reel-play-sm">▶</div>
+            <div>
+              <div class="reel-track-name">Pale Horizon</div>
+              <div class="reel-track-meta">72 BPM · D Major · Ambient</div>
+            </div>
+          </div>
+          <div class="reel-status active">🎬 Active</div>
+        </div>
+        <div class="reel-card-scene">"Empty highway at dawn — a character leaving everything behind, no looking back."</div>
+      </div>
+
+      <!-- Active slot 3 with cooldown -->
+      <div class="reel-card">
+        <div class="reel-card-header">
+          <div class="reel-track">
+            <div class="reel-play-sm">▶</div>
+            <div>
+              <div class="reel-track-name">System Override</div>
+              <div class="reel-track-meta">155 BPM · C# Minor · Electronic</div>
+            </div>
+          </div>
+          <div class="reel-status cooldown">↻ 14 days to swap</div>
+        </div>
+        <div class="reel-card-scene">"Server room emergency — protagonist has 90 seconds before everything goes dark."</div>
+      </div>
+
+      <div style="font-size:11px; color:var(--dim); letter-spacing:0.5px; padding:8px 4px;">3 of 3 reel slots active · Next swap available in 14 days on Slot 3</div>
     </div>
   </div>
 </div>
 
 <!-- PRICING -->
-<section class="section" id="pricing">
+<section class="pricing" id="pricing">
   <div class="eyebrow reveal">
-    <div class="eyebrow-line"></div>
-    <div class="eyebrow-text">Pricing</div>
+    <div class="ey-line"></div>
+    <div class="ey-text">Pricing</div>
   </div>
-  <h2 class="section-title reveal">Full intelligence.<br><em>One track free.</em> Forever.</h2>
-  <p class="section-sub reveal">Try everything on one track — no watermarks, no limits, no credit card. When you're ready to run your full catalog through the intelligence layer, upgrade.</p>
+  <h2 class="feat-title reveal">Full intelligence.<br><em>One track free.</em> Always.</h2>
+  <p class="feat-sub reveal">Try the entire intelligence layer on one track — no watermarks, no card required. When you're ready to run your full catalog, upgrade.</p>
 
-  <div class="pricing-grid">
+  <div class="price-grid">
 
     <!-- FREE -->
-    <div class="price-card reveal">
-      <div class="price-tier">Starter</div>
-      <div class="price-amount"><sup>$</sup>0</div>
-      <div class="price-period">free · forever</div>
-      <div class="price-hook">Everything. One track. See exactly what the platform does before spending a dollar.</div>
-      <ul class="price-features">
-        <li class="li-on"><span class="fi fi-on">→</span> 1 track — fully processed</li>
-        <li class="li-on"><span class="fi fi-on">→</span> All 5 intelligence layers</li>
-        <li class="li-on"><span class="fi fi-on">→</span> 3 AI scene pitches</li>
-        <li class="li-on"><span class="fi fi-on">→</span> 10 emotional keywords</li>
-        <li class="li-on"><span class="fi fi-on">→</span> One-Stop certification</li>
-        <li class="li-on"><span class="fi fi-on">→</span> Full Sync Score breakdown</li>
-        <li class="li-on"><span class="fi fi-on">→</span> Public gallery — live immediately</li>
-        <li class="li-off"><span class="fi fi-off">→</span> No catalog gap analysis</li>
-        <li class="li-off"><span class="fi fi-off">→</span> No mood board matching</li>
+    <div class="p-card reveal">
+      <div class="p-tier">Starter</div>
+      <div class="p-amount"><sup>$</sup>0</div>
+      <div class="p-period">free · forever</div>
+      <div class="p-hook">Every intelligence feature. One track. See exactly what this does before spending a dollar.</div>
+      <ul class="p-feats">
+        <li class="on"><span class="arr">→</span> 1 track — fully processed</li>
+        <li class="on"><span class="arr">→</span> 3 AI scene pitches</li>
+        <li class="on"><span class="arr">→</span> 10 emotional keywords</li>
+        <li class="on"><span class="arr">→</span> One-Stop certification</li>
+        <li class="on"><span class="arr">→</span> Full Sync Score + breakdown</li>
+        <li class="on"><span class="arr">→</span> Public gallery — live immediately</li>
+        <li class="off"><span class="arr">→</span> No catalog gap analysis</li>
+        <li class="off"><span class="arr">→</span> No mood reels</li>
       </ul>
-      <button class="price-btn btn-outline">Start Free — No Card</button>
+      <button class="p-btn btn-ghost-gold" onclick="sub2('free')">Start Free — No Card</button>
     </div>
 
     <!-- PRO -->
-    <div class="price-card featured reveal d1">
-      <div class="featured-label">Most Popular</div>
-      <div class="price-tier">Pro</div>
-      <div class="price-amount"><sup>$</sup>25</div>
-      <div class="price-period">per month</div>
-      <div class="price-hook">Your full catalog, fully intelligent. The complete sync readiness system for working artists.</div>
-      <ul class="price-features">
-        <li class="li-highlight"><span class="fi fi-on">→</span> 20 tracks</li>
-        <li class="li-on"><span class="fi fi-on">→</span> Everything in Starter</li>
-        <li class="li-highlight"><span class="fi fi-on">→</span> Catalog gap analysis — monthly</li>
-        <li class="li-highlight"><span class="fi fi-on">→</span> Mood board track pairing</li>
-        <li class="li-on"><span class="fi fi-on">→</span> Metadata locked into every file</li>
-        <li class="li-on"><span class="fi fi-on">→</span> Custom gallery URL</li>
-        <li class="li-on"><span class="fi fi-on">→</span> Re-analysis on re-upload</li>
-        <li class="li-on"><span class="fi fi-on">→</span> Priority processing</li>
+    <div class="p-card featured reveal d1">
+      <div class="p-ribbon">Most Popular</div>
+      <div class="p-tier">Pro</div>
+      <div class="p-amount"><sup>$</sup>25</div>
+      <div class="p-period">per month</div>
+      <div class="p-hook">Your full catalog, fully intelligent. For working artists serious about sync.</div>
+      <ul class="p-feats">
+        <li class="hi"><span class="arr">→</span> 20 tracks</li>
+        <li class="on"><span class="arr">→</span> Everything in Starter</li>
+        <li class="hi"><span class="arr">→</span> Catalog gap analysis — monthly</li>
+        <li class="hi"><span class="arr">→</span> Mood board track pairing</li>
+        <li class="on"><span class="arr">→</span> Metadata locked into every file</li>
+        <li class="on"><span class="arr">→</span> Custom gallery URL</li>
+        <li class="on"><span class="arr">→</span> Re-analysis on re-upload</li>
+        <li class="off"><span class="arr">→</span> No mood reels</li>
       </ul>
-      <button class="price-btn btn-gold">Join Waitlist — Pro</button>
+      <button class="p-btn btn-solid-gold" onclick="sub2('pro')">Join Waitlist — Pro</button>
     </div>
 
     <!-- CATALOG -->
-    <div class="price-card reveal d2">
-      <div class="price-tier">Catalog</div>
-      <div class="price-amount"><sup>$</sup>59</div>
-      <div class="price-period">per month</div>
-      <div class="price-hook">For artists treating sync as a primary income stream. Unlimited tracks, deep market intelligence.</div>
-      <ul class="price-features">
-        <li class="li-highlight"><span class="fi fi-on">→</span> Unlimited tracks</li>
-        <li class="li-on"><span class="fi fi-on">→</span> Everything in Pro</li>
-        <li class="li-highlight"><span class="fi fi-on">→</span> Supervisor search term report — monthly</li>
-        <li class="li-highlight"><span class="fi fi-on">→</span> Supervisor view + download analytics</li>
-        <li class="li-on"><span class="fi fi-on">→</span> Vanity URL: yourname.syncready.io</li>
-        <li class="li-on"><span class="fi fi-on">→</span> CSV export for PRO registration</li>
-        <li class="li-on"><span class="fi fi-on">→</span> Early access to new features</li>
+    <div class="p-card reveal d2">
+      <div class="p-tier">Catalog</div>
+      <div class="p-amount"><sup>$</sup>59</div>
+      <div class="p-period">per month</div>
+      <div class="p-hook">For artists treating sync as a primary income stream. Everything — plus the feature nobody else has.</div>
+      <ul class="p-feats">
+        <li class="hi"><span class="arr">→</span> Unlimited tracks</li>
+        <li class="on"><span class="arr">→</span> Everything in Pro</li>
+        <li class="reel-feat"><span class="arr">→</span> 3 active Cinematic Mood Reels</li>
+        <li class="reel-feat"><span class="arr">→</span> Swap any reel after 30 days</li>
+        <li class="hi"><span class="arr">→</span> Supervisor view + download analytics</li>
+        <li class="hi"><span class="arr">→</span> Monthly supervisor search term report</li>
+        <li class="on"><span class="arr">→</span> Vanity URL: yourname.syncready.io</li>
+        <li class="on"><span class="arr">→</span> CSV export for PRO registration</li>
       </ul>
-      <button class="price-btn btn-outline">Join Waitlist — Catalog</button>
+      <button class="p-btn btn-ghost" onclick="sub2('catalog')">Join Waitlist — Catalog</button>
     </div>
 
-  </div>
-</section>
-
-<!-- COMPARISON -->
-<section class="section" style="padding-top:0;">
-  <div class="eyebrow reveal">
-    <div class="eyebrow-line"></div>
-    <div class="eyebrow-text">Why Not Just Use What You Have</div>
-  </div>
-  <h2 class="section-title reveal">Your publisher's site<br>doesn't do <em>any of this.</em></h2>
-
-  <div class="compare-table reveal">
-    <div class="compare-header">
-      <div class="compare-th">Feature</div>
-      <div class="compare-th highlight">SyncReady</div>
-      <div class="compare-th">Publisher / SoundCloud</div>
-      <div class="compare-th">Musicbed / Disco</div>
-    </div>
-    <div class="compare-row">
-      <div class="compare-td feature">AI scene pitch writing</div>
-      <div class="compare-td"><span class="check">✓</span></div>
-      <div class="compare-td"><span class="cross">—</span></div>
-      <div class="compare-td"><span class="cross">—</span></div>
-    </div>
-    <div class="compare-row">
-      <div class="compare-td feature">Emotional keyword mapping (10 per track)</div>
-      <div class="compare-td"><span class="check">✓</span></div>
-      <div class="compare-td"><span class="cross">—</span></div>
-      <div class="compare-td"><span class="cross">—</span></div>
-    </div>
-    <div class="compare-row">
-      <div class="compare-td feature">Waveform editability scoring</div>
-      <div class="compare-td"><span class="check">✓</span></div>
-      <div class="compare-td"><span class="cross">—</span></div>
-      <div class="compare-td"><span class="cross">—</span></div>
-    </div>
-    <div class="compare-row">
-      <div class="compare-td feature">One-Stop AI screening + badge</div>
-      <div class="compare-td"><span class="check">✓</span></div>
-      <div class="compare-td"><span class="cross">—</span></div>
-      <div class="compare-td"><span class="partial">Manual only</span></div>
-    </div>
-    <div class="compare-row">
-      <div class="compare-td feature">Catalog gap analysis</div>
-      <div class="compare-td"><span class="check">✓</span></div>
-      <div class="compare-td"><span class="cross">—</span></div>
-      <div class="compare-td"><span class="cross">—</span></div>
-    </div>
-    <div class="compare-row">
-      <div class="compare-td feature">Contact info burned into file</div>
-      <div class="compare-td"><span class="check">✓</span></div>
-      <div class="compare-td"><span class="cross">—</span></div>
-      <div class="compare-td"><span class="cross">—</span></div>
-    </div>
-    <div class="compare-row">
-      <div class="compare-td feature">You own your data + relationships</div>
-      <div class="compare-td"><span class="check">✓</span></div>
-      <div class="compare-td"><span class="cross">—</span></div>
-      <div class="compare-td"><span class="partial">Platform dependent</span></div>
-    </div>
   </div>
 </section>
 
 <!-- FINAL CTA -->
-<div class="final-cta">
+<div class="final">
   <div class="eyebrow reveal" style="justify-content:center">
-    <span style="flex:1;max-width:60px;height:1px;background:var(--gold)"></span>
-    <div class="eyebrow-text">Ready?</div>
-    <span style="flex:1;max-width:60px;height:1px;background:var(--gold)"></span>
+    <span style="flex:1;max-width:48px;height:1px;background:var(--gold);display:block"></span>
+    <div class="ey-text">Start Today</div>
+    <span style="flex:1;max-width:48px;height:1px;background:var(--gold);display:block"></span>
   </div>
-  <h2 class="section-title reveal" style="text-align:center;max-width:700px;margin:0 auto 20px;">
-    Start with one track.<br><em>See everything.</em>
+  <h2 class="final-title reveal">
+    One track.<br>
+    <em>The full picture.</em><br>
+    Free, forever.
   </h2>
-  <p class="section-sub reveal" style="text-align:center;margin:0 auto 40px;">No credit card. No watermarks. Full intelligence layer on your first track — free, forever.</p>
-  <div class="hero-form reveal" style="margin:0 auto 16px;">
-    <input type="email" id="emailInput2" placeholder="your@email.com" />
-    <button onclick="handleSubmit2()">Join the Waitlist</button>
+  <p class="final-sub reveal">No card. No watermarks. Every intelligence feature on your first track — so you know exactly what you're getting before you commit.</p>
+  <div class="email-row reveal" style="margin:0 auto 14px; max-width:420px;">
+    <input type="email" id="e2" placeholder="your@email.com" />
+    <button onclick="sub('e2')">Join the Waitlist</button>
   </div>
-  <div class="form-note reveal">Early access members get their first month of Pro free.</div>
+  <div class="form-micro reveal">Early access members get their first month of Pro free.</div>
+  <div class="success" id="s2" style="display:none;margin-top:12px;">✓ You're on the list.</div>
 </div>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Sync<em>Ready</em></div>
-  <div class="footer-copy">© 2026 SyncReady · Built for independent artists · syncreadyio@gmail.com</div>
-  <div class="footer-copy">Sync Intelligence Platform</div>
+  <div class="footer-copy">© 2026 SyncReady · Sync Intelligence for Independent Artists</div>
+  <div class="footer-copy">syncreadyio@gmail.com</div>
 </footer>
 
 <script>
-// Nav scroll
+// Nav
 window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
 });
-
-// Scroll reveal
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
-    document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
   });
 });
 
-// Form handlers
-function handleSubmit() {
-  const email = document.getElementById('emailInput').value;
-  if (!email || !email.includes('@')) { alert('Please enter a valid email.'); return; }
-  window.open('mailto:syncreadyio@gmail.com?subject=SyncReady Waitlist&body=Add me to the waitlist: ' + email);
-  document.getElementById('successMsg').style.display = 'block';
-  document.getElementById('emailInput').value = '';
+// Reveal on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Rain
+const rain = document.getElementById('rain');
+if (rain) {
+  for (let i = 0; i < 40; i++) {
+    const d = document.createElement('div');
+    d.className = 'raindrop';
+    d.style.cssText = `
+      left: ${Math.random() * 100}%;
+      height: ${Math.random() * 60 + 40}px;
+      animation-duration: ${Math.random() * 1 + 0.8}s;
+      animation-delay: ${Math.random() * 2}s;
+      opacity: ${Math.random() * 0.3 + 0.1};
+    `;
+    rain.appendChild(d);
+  }
 }
 
-function handleSubmit2() {
-  const email = document.getElementById('emailInput2').value;
+// Form handlers
+function sub(id) {
+  const email = document.getElementById(id).value;
   if (!email || !email.includes('@')) { alert('Please enter a valid email.'); return; }
-  window.open('mailto:syncreadyio@gmail.com?subject=SyncReady Waitlist&body=Add me to the waitlist: ' + email);
-  document.getElementById('emailInput2').value = '';
+  window.open(`mailto:syncreadyio@gmail.com?subject=SyncReady Waitlist&body=Please add me to the waitlist: ${email}`);
+  document.getElementById(id === 'e1' ? 's1' : 's2').style.display = 'block';
+  document.getElementById(id).value = '';
+}
+
+function sub2(tier) {
+  window.open(`mailto:syncreadyio@gmail.com?subject=SyncReady Waitlist — ${tier}&body=Please add me to the ${tier} waitlist.`);
 }
 </script>
 </body>
