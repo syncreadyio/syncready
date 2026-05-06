@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sable June — Sync Gallery · SyncReady</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&family=Outfit+Mono&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #07070a;
+  --surface: #0c0c12;
+  --card: #101018;
+  --border: #18182a;
+  --border2: #22223a;
+  --white: #eae6f4;
+  --mid: #908ca8;
+  --dim: #52506a;
+  --gold: #c8924a;
+  --gold2: #e8b06a;
+  --gold-soft: rgba(200,146,74,0.08);
+  --gold-border: rgba(200,146,74,0.22);
+  --teal: #3dcfb0;
+  --teal-soft: rgba(61,207,176,0.08);
+  --teal-border: rgba(61,207,176,0.22);
+  --purple: #7c5cf5;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+}
+
+/* Topbar */
+.topbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.topbar-logo {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--mid);
+  text-decoration: none;
+}
+
+.topbar-logo em { font-style: italic; color: var(--gold); }
+
+.topbar-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--teal-soft);
+  border: 1px solid var(--teal-border);
+  padding: 4px 12px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+
+.topbar-badge::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* Artist header */
+.artist-header {
+  padding: 48px 48px 0;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 28px;
+  align-items: start;
+}
+
+.avatar {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple), var(--gold));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--white);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.avatar::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple), var(--gold));
+  z-index: -1;
+  opacity: 0.3;
+  filter: blur(10px);
+}
+
+.artist-name {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.artist-name em { font-style: italic; color: var(--gold); }
+
+.artist-bio {
+  font-size: 13px;
+  color: var(--mid);
+  line-height: 1.7;
+  max-width: 580px;
+  margin-bottom: 12px;
+}
+
+.artist-tags {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.atag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.atag-sep { color: var(--border2); }
+
+.onestop {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--teal-soft);
+  border: 1px solid var(--teal-border);
+  padding: 4px 12px;
+  margin-top: 10px;
+  width: fit-content;
+}
+
+.onestop span {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+
+.contact-block { text-align: right; }
+
+.contact-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 6px;
+}
+
+.contact-email {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.2s;
+  display: block;
+}
+
+.contact-email:hover { color: var(--gold); }
+
+.contact-note {
+  font-size: 11px;
+  color: var(--dim);
+  margin-top: 4px;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 28px 48px 0;
+  max-width: calc(1300px - 96px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Filter bar */
+.filter-bar {
+  padding: 16px 48px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  max-width: 1300px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--border);
+}
+
+.filter-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-right: 4px;
+}
+
+.fbtn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--dim);
+  padding: 5px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.fbtn:hover { border-color: var(--border2); color: var(--white); }
+.fbtn.active { background: var(--gold-soft); border-color: var(--gold-border); color: var(--gold); }
+
+/* Track grid */
+.track-grid {
+  padding: 2px 48px 60px;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Featured track card */
+.track-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.track-card:hover { border-color: var(--border2); }
+.track-card.featured { border-color: var(--gold-border); background: rgba(200,146,74,0.02); }
+
+.track-card-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 400px;
+}
+
+.track-left { padding: 28px; border-right: 1px solid var(--border); }
+
+.track-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.track-num {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--dim);
+  font-family: 'Outfit', monospace;
+}
+
+.score-wrap { text-align: right; }
+
+.score-num {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--teal);
+  line-height: 1;
+}
+
+.score-lbl {
+  font-size: 9px;
+  color: var(--dim);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Waveform */
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 28px;
+  margin-bottom: 14px;
+}
+
+.wbar {
+  flex: 1;
+  background: var(--gold);
+  border-radius: 1px;
+  opacity: 0.4;
+  transition: all 0.2s;
+}
+
+.wbar.playing {
+  opacity: 1;
+  animation: wb 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes wb { from{transform:scaleY(0.3)} to{transform:scaleY(1)} }
+
+.track-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.track-title em { font-style: italic; color: var(--gold); }
+
+.tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.tag {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  padding: 3px 9px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--dim);
+  text-transform: uppercase;
+}
+
+.tag.mood { border-color: rgba(124,92,245,0.3); color: #a98bff; background: rgba(124,92,245,0.07); }
+.tag.key { border-color: var(--gold-border); color: var(--gold); background: var(--gold-soft); }
+
+.stats {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+
+.stat-val { font-size: 18px; font-weight: 700; }
+.stat-key { font-size: 9px; color: var(--dim); letter-spacing: 2px; text-transform: uppercase; }
+
+/* Pitches */
+.pitches-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.pitch-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+  align-items: flex-start;
+}
+
+.pitch-tag {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border: 1px solid var(--gold-border);
+  color: var(--gold);
+  background: var(--gold-soft);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.pitch-txt {
+  font-size: 12px;
+  color: var(--mid);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* Keywords */
+.kws-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 14px 0 8px;
+}
+
+.kws {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.kw {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border2);
+  padding: 3px 10px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--dim);
+  transition: all 0.2s;
+  cursor: default;
+}
+
+.kw:hover { border-color: var(--gold-border); color: var(--gold); background: var(--gold-soft); }
+
+/* Actions */
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.btn-play {
+  background: var(--gold);
+  color: var(--bg);
+  border: none;
+  padding: 10px 18px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-play:hover { background: var(--gold2); }
+
+.btn-dl {
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-border);
+  color: var(--gold);
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-dl:hover { background: var(--gold); color: var(--bg); }
+
+.btn-ver {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--dim);
+  padding: 10px 14px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-ver:hover { border-color: var(--white); color: var(--white); }
+
+.versions { display: none; flex-direction: column; gap: 4px; margin-top: 10px; }
+.versions.open { display: flex; }
+
+.ver-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--dim);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ver-row:hover { border-color: var(--gold-border); color: var(--white); }
+.ver-dl { font-size: 10px; letter-spacing: 1px; color: var(--gold); }
+
+/* Mood reel panel */
+.track-right {
+  position: relative;
+  overflow: hidden;
+  background: #030306;
+}
+
+/* Letterbox */
+.lb-top, .lb-bot {
+  position: absolute;
+  left: 0; right: 0;
+  height: 36px;
+  background: #000;
+  z-index: 5;
+}
+
+.lb-top { top: 0; }
+.lb-bot { bottom: 0; }
+
+.cam-badge {
+  position: absolute;
+  top: 44px; left: 16px;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cam-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #e84545;
+  animation: recBlink 1s ease-in-out infinite;
+}
+
+@keyframes recBlink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+.cam-txt {
+  font-family: 'Outfit', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.35);
+  text-transform: uppercase;
+}
+
+.scene-overlay {
+  position: absolute;
+  bottom: 44px;
+  left: 0; right: 0;
+  padding: 0 20px;
+  z-index: 8;
+}
+
+.scene-tag-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.8;
+  margin-bottom: 6px;
+}
+
+.scene-desc {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.5;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.9);
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(to bottom, transparent 0px, transparent 3px, rgba(0,0,0,0.1) 3px, rgba(0,0,0,0.1) 4px);
+  z-index: 6;
+  pointer-events: none;
+}
+
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  z-index: 7;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+}
+
+/* Compact track rows */
+.track-row {
+  background: var(--card);
+  border: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 20px;
+  padding: 18px 24px;
+  align-items: center;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.track-row:hover { border-color: var(--border2); background: #131320; }
+
+.row-play {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-border);
+  color: var(--gold);
+  font-size: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.row-play:hover { background: var(--gold); color: var(--bg); }
+
+.row-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.row-title em { font-style: italic; color: var(--gold); }
+
+.row-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.row-tag {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  color: var(--dim);
+}
+
+.row-tag.mood { border-color: rgba(124,92,245,0.3); color: #a98bff; background: rgba(124,92,245,0.07); }
+.row-tag.key { border-color: var(--gold-border); color: var(--gold); background: var(--gold-soft); }
+
+.row-pitch {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--dim);
+  margin-top: 4px;
+  max-width: 400px;
+}
+
+.row-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.row-score { text-align: center; }
+.row-score-num { font-size: 22px; font-weight: 800; color: var(--teal); line-height: 1; }
+.row-score-lbl { font-size: 8px; color: var(--dim); letter-spacing: 1px; text-transform: uppercase; }
+
+/* Gallery footer */
+.gallery-footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: var(--surface);
+}
+
+.gf-left { font-size: 13px; color: var(--dim); }
+.gf-left strong { color: var(--white); }
+
+.gf-cta {
+  background: var(--gold);
+  color: var(--bg);
+  padding: 10px 24px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.gf-cta:hover { background: var(--gold2); }
+
+.powered {
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 1px;
+  font-family: 'Outfit', monospace;
+}
+
+.powered span { color: var(--gold); }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  background: var(--teal);
+  color: #040e0a;
+  padding: 12px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 9999;
+  transform: translateY(80px);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  pointer-events: none;
+}
+
+.toast.show { transform: translateY(0); opacity: 1; }
+
+@media (max-width: 768px) {
+  .artist-header { grid-template-columns: auto 1fr; gap: 16px; }
+  .contact-block { display: none; }
+  .track-card-inner { grid-template-columns: 1fr; }
+  .track-right { height: 280px; }
+  .track-grid, .filter-bar { padding-left: 20px; padding-right: 20px; }
+  .artist-header { padding: 32px 20px 0; }
+  .divider { margin: 20px; }
+  .gallery-footer { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <a href="index.html" class="topbar-logo">Sync<em>Ready</em></a>
+  <div class="topbar-badge">Supervisor Gallery · Public Link</div>
+</div>
+
+<!-- ARTIST HEADER -->
+<div class="artist-header">
+  <div class="avatar">SJ</div>
+  <div>
+    <div class="artist-name">Sable <em>June</em></div>
+    <div class="artist-bio">Sable June is a Los Angeles-based composer and producer specializing in cinematic electronic music for film, television, and interactive media. Her work lives in the space between tension and release — built for the moments that don't need words.</div>
+    <div class="artist-tags">
+      <div class="atag">Cinematic</div><div class="atag-sep">·</div>
+      <div class="atag">Electronic</div><div class="atag-sep">·</div>
+      <div class="atag">Ambient</div><div class="atag-sep">·</div>
+      <div class="atag">Los Angeles, CA</div><div class="atag-sep">·</div>
+      <div class="atag">3 Tracks Available</div>
+    </div>
+    <div class="onestop">
+      <span style="color:var(--teal); font-size:14px;">✓</span>
+      <span>One-Stop Cleared — Artist Declared · AI Reviewed</span>
+    </div>
+  </div>
+  <div class="contact-block">
+    <div class="contact-label">For Licensing Inquiries</div>
+    <a href="mailto:syncreadyio@gmail.com" class="contact-email">syncreadyio@gmail.com</a>
+    <div class="contact-note">Responds within 24 hrs · All deals considered</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-label">Filter</div>
+  <button class="fbtn active" onclick="filter('all',this)">All Tracks</button>
+  <button class="fbtn" onclick="filter('cinematic',this)">Cinematic</button>
+  <button class="fbtn" onclick="filter('ambient',this)">Ambient</button>
+  <button class="fbtn" onclick="filter('tense',this)">Tense</button>
+  <button class="fbtn" onclick="filter('electronic',this)">Electronic</button>
+</div>
+
+<!-- TRACK GRID -->
+<div class="track-grid">
+
+  <!-- TRACK 1 — Featured with Mood Reel -->
+  <div class="track-card featured" data-mood="cinematic tense">
+    <div class="track-card-inner">
+
+      <!-- Left: Info -->
+      <div class="track-left">
+        <div class="track-top">
+          <div class="track-num">01 / 03 · 🎬 Mood Reel Active</div>
+          <div class="score-wrap">
+            <div class="score-num">94</div>
+            <div class="score-lbl">Sync Score</div>
+          </div>
+        </div>
+
+        <div class="waveform" id="wf1">
+          <div class="wbar" style="height:35%"></div><div class="wbar" style="height:80%"></div>
+          <div class="wbar" style="height:100%"></div><div class="wbar" style="height:55%"></div>
+          <div class="wbar" style="height:75%"></div><div class="wbar" style="height:45%"></div>
+          <div class="wbar" style="height:90%"></div><div class="wbar" style="height:60%"></div>
+          <div class="wbar" style="height:70%"></div><div class="wbar" style="height:40%"></div>
+          <div class="wbar" style="height:85%"></div><div class="wbar" style="height:50%"></div>
+          <div class="wbar" style="height:65%"></div><div class="wbar" style="height:95%"></div>
+          <div class="wbar" style="height:42%"></div><div class="wbar" style="height:72%"></div>
+        </div>
+
+        <div class="track-title">Ghost in the <em>Frame</em></div>
+
+        <div class="tags">
+          <div class="tag mood">Cinematic</div>
+          <div class="tag key">A Minor</div>
+          <div class="tag">Tense</div>
+          <div class="tag">Urban</div>
+          <div class="tag">Electronic</div>
+        </div>
+
+        <div class="stats">
+          <div><div class="stat-val">124</div><div class="stat-key">BPM</div></div>
+          <div><div class="stat-val">3:42</div><div class="stat-key">Length</div></div>
+          <div><div class="stat-val">:04</div><div class="stat-key">Intro</div></div>
+          <div><div class="stat-val">WAV</div><div class="stat-key">Format</div></div>
+          <div><div class="stat-val">24-bit</div><div class="stat-key">Depth</div></div>
+        </div>
+
+        <div class="pitches-label">AI Scene Pitches</div>
+        <div class="pitch-row">
+          <div class="pitch-tag">Crime Drama</div>
+          <div class="pitch-txt">"A detective who knows too much — this track mirrors the weight of a secret that's already cost everything."</div>
+        </div>
+        <div class="pitch-row">
+          <div class="pitch-tag">Thriller</div>
+          <div class="pitch-txt">"Surveillance footage energy — the camera watching someone who doesn't know they're being watched."</div>
+        </div>
+        <div class="pitch-row">
+          <div class="pitch-tag">Luxury Brand</div>
+          <div class="pitch-txt">"Dark sophistication for an automotive or tech brand that wants edge without aggression."</div>
+        </div>
+
+        <div class="kws-label">Emotional Keywords</div>
+        <div class="kws">
+          <div class="kw">late night pursuit</div>
+          <div class="kw">quiet dread</div>
+          <div class="kw">3am decision</div>
+          <div class="kw">surveillance</div>
+          <div class="kw">urban isolation</div>
+          <div class="kw">last chance</div>
+          <div class="kw">morally grey</div>
+          <div class="kw">gritty resolve</div>
+        </div>
+
+        <div class="actions">
+          <button class="btn-play" id="playBtn1" onclick="togglePlay(1)">▶ Preview</button>
+          <button class="btn-dl" onclick="showToast('Ghost in the Frame')">↓ Download</button>
+          <button class="btn-ver" onclick="toggleVer('ver1')">Versions ↕</button>
+        </div>
+
+        <div class="versions" id="ver1">
+          <div class="ver-row" onclick="showToast('Full Mix')"><span>↳ Full Mix (3:42)</span><span class="ver-dl">↓ WAV</span></div>
+          <div class="ver-row" onclick="showToast('Instrumental')"><span>↳ Instrumental (3:42)</span><span class="ver-dl">↓ WAV</span></div>
+          <div class="ver-row" onclick="showToast('30s Sting')"><span>↳ Sting / 30s Edit</span><span class="ver-dl">↓ WAV</span></div>
+          <div class="ver-row" onclick="showToast('No Drums')"><span>↳ No Drums Version</span><span class="ver-dl">↓ WAV</span></div>
+        </div>
+      </div>
+
+      <!-- Right: Mood Reel -->
+      <div class="track-right" id="reel1">
+        <div class="lb-top"></div>
+        <div class="lb-bot"></div>
+        <canvas id="rainCanvas1" style="position:absolute;inset:0;width:100%;height:100%;z-index:2;"></canvas>
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 25% 65%, rgba(255,120,0,0.07) 0%, transparent 55%), radial-gradient(ellipse at 70% 55%, rgba(60,80,200,0.06) 0%, transparent 50%);z-index:1;"></div>
+        <div id="cityLights1" style="position:absolute;bottom:80px;left:0;right:0;height:140px;z-index:2;"></div>
+        <div style="position:absolute;bottom:36px;left:0;right:0;z-index:3;">
+          <div style="height:2px;background:rgba(255,255,255,0.07);margin-bottom:10px;"></div>
+          <div style="display:flex;gap:55%;padding:0 22%;"><div style="flex:1;height:1px;background:rgba(255,255,255,0.1);"></div><div style="flex:1;height:1px;background:rgba(255,255,255,0.1);"></div></div>
+        </div>
+        <div style="position:absolute;bottom:75px;left:50%;transform:translateX(-50%);z-index:4;text-align:center;">
+          <div style="width:3px;height:44px;background:rgba(255,255,255,0.12);margin:0 auto;border-radius:2px;"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.1);margin:-2px auto 0;"></div>
+        </div>
+        <div class="scanlines"></div>
+        <div class="grain-overlay"></div>
+        <div class="cam-badge">
+          <div class="cam-dot"></div>
+          <div class="cam-txt">CAM 04 · 02:17 · PLATFORM B</div>
+        </div>
+        <div class="scene-overlay">
+          <div class="scene-tag-label">🎬 AI Mood Reel · Catalog Exclusive</div>
+          <div class="scene-desc">"Rain-soaked platform, 2am. A figure who knows too much. The train that never comes."</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TRACK 2 -->
+  <div class="track-row" data-mood="ambient" id="t2">
+    <button class="row-play" onclick="togglePlay(2)" id="playBtn2">▶</button>
+    <div>
+      <div class="row-title">Lowlight <em>Drive</em></div>
+      <div class="row-meta">
+        <div class="row-tag mood">Melancholic</div>
+        <div class="row-tag key">E♭ Major</div>
+        <div class="row-tag">Ambient</div>
+        <div class="row-tag">Slow Burn</div>
+        <span style="font-size:11px;color:var(--dim);">88 BPM · 4:15 · Intro :08</span>
+      </div>
+      <div class="row-pitch">"Empty highway at dawn — a character leaving everything behind, no looking back."</div>
+    </div>
+    <div class="row-right">
+      <div class="row-score"><div class="row-score-num">87</div><div class="row-score-lbl">Score</div></div>
+      <button class="btn-dl" style="font-size:10px;padding:8px 14px;" onclick="showToast('Lowlight Drive')">↓ WAV</button>
+    </div>
+  </div>
+
+  <!-- TRACK 3 -->
+  <div class="track-row" data-mood="cinematic tense electronic" id="t3">
+    <button class="row-play" onclick="togglePlay(3)" id="playBtn3">▶</button>
+    <div>
+      <div class="row-title">Neon <em>Sprawl</em></div>
+      <div class="row-meta">
+        <div class="row-tag mood">Tense</div>
+        <div class="row-tag key">F# Minor</div>
+        <div class="row-tag">Electronic</div>
+        <div class="row-tag">Action</div>
+        <span style="font-size:11px;color:var(--dim);">140 BPM · 3:08 · Intro :02</span>
+      </div>
+      <div class="row-pitch">"City that never sleeps, protagonist who can't afford to either."</div>
+    </div>
+    <div class="row-right">
+      <div class="row-score"><div class="row-score-num">91</div><div class="row-score-lbl">Score</div></div>
+      <button class="btn-dl" style="font-size:10px;padding:8px 14px;" onclick="showToast('Neon Sprawl')">↓ WAV</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- GALLERY FOOTER -->
+<div class="gallery-footer">
+  <div class="gf-left"><strong>Sable June</strong> · All tracks One-Stop cleared · syncreadyio@gmail.com</div>
+  <a href="index.html" class="gf-cta">Get Your Own Gallery</a>
+  <div class="powered">Powered by <span>SyncReady</span></div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Download started</div>
+
+<script>
+let playing = null;
+
+function togglePlay(id) {
+  if (playing && playing !== id) {
+    stopPlay(playing);
+  }
+  if (playing === id) {
+    stopPlay(id);
+  } else {
+    startPlay(id);
+  }
+}
+
+function startPlay(id) {
+  playing = id;
+  if (id === 1) {
+    const btn = document.getElementById('playBtn1');
+    btn.textContent = '■ Stop';
+    btn.style.background = 'var(--teal)';
+    document.querySelectorAll('#wf1 .wbar').forEach((b, i) => {
+      b.classList.add('playing');
+      b.style.animationDelay = (i * 0.06) + 's';
+    });
+  } else {
+    const btn = document.getElementById('playBtn' + id);
+    btn.textContent = '■';
+    btn.style.background = 'var(--teal)';
+    btn.style.color = '#040e0a';
+    btn.style.borderColor = 'var(--teal)';
+  }
+}
+
+function stopPlay(id) {
+  playing = null;
+  if (id === 1) {
+    const btn = document.getElementById('playBtn1');
+    btn.textContent = '▶ Preview';
+    btn.style.background = 'var(--gold)';
+    document.querySelectorAll('#wf1 .wbar').forEach(b => b.classList.remove('playing'));
+  } else {
+    const btn = document.getElementById('playBtn' + id);
+    btn.textContent = '▶';
+    btn.style.background = 'var(--gold-soft)';
+    btn.style.color = 'var(--gold)';
+    btn.style.borderColor = 'var(--gold-border)';
+  }
+}
+
+function toggleVer(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+function filter(mood, btn) {
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('[data-mood]').forEach(el => {
+    el.style.display = mood === 'all' || (el.dataset.mood || '').includes(mood) ? '' : 'none';
+  });
+}
+
+function showToast(name) {
+  const t = document.getElementById('toast');
+  t.textContent = '✓ ' + name + ' — download started';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// Rain animation
+function initRain(canvasId, cityId) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const drops = [];
+
+  function resize() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+
+  for (let i = 0; i < 70; i++) {
+    drops.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      speed: Math.random() * 5 + 3,
+      length: Math.random() * 25 + 10,
+      opacity: Math.random() * 0.2 + 0.05
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drops.forEach(d => {
+      ctx.beginPath();
+      ctx.moveTo(d.x, d.y);
+      ctx.lineTo(d.x - 1, d.y + d.length);
+      ctx.strokeStyle = `rgba(180,190,220,${d.opacity})`;
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+      d.y += d.speed;
+      if (d.y > canvas.height) { d.y = -d.length; d.x = Math.random() * canvas.width; }
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  // City lights
+  const city = document.getElementById(cityId);
+  if (city) {
+    for (let i = 0; i < 35; i++) {
+      const l = document.createElement('div');
+      const s = Math.random() * 3 + 1;
+      const warm = Math.random() > 0.5;
+      const col = warm ? '255,130,50' : '80,100,220';
+      const op = Math.random() * 0.5 + 0.2;
+      l.style.cssText = `position:absolute;width:${s}px;height:${s}px;border-radius:50%;background:rgba(${col},${op});left:${Math.random()*100}%;top:${Math.random()*100}%;animation:cp ${Math.random()*3+2}s ease-in-out ${Math.random()*2}s infinite;`;
+      city.appendChild(l);
+    }
+  }
+}
+
+initRain('rainCanvas1', 'cityLights1');
+</script>
+
+<style>
+@keyframes cp { 0%,100%{opacity:0.3} 50%{opacity:1} }
+</style>
+
+</body>
+</html>
