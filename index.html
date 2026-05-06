@@ -1167,6 +1167,523 @@ footer {
   </div>
 </section>
 
+<!-- SABLE JUNE DEMO SECTION -->
+<div class="demo-section-wrap" id="demo" style="background:var(--bg); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:100px 64px;">
+  <div style="max-width:1300px; margin:0 auto;">
+
+    <!-- Header -->
+    <div class="reveal" style="text-align:center; margin-bottom:56px;">
+      <div class="eyebrow" style="justify-content:center; margin-bottom:16px;">
+        <div class="ey-line"></div>
+        <div class="ey-text">Live Demo — See It In Action</div>
+        <div class="ey-line"></div>
+      </div>
+      <h2 class="feat-title" style="margin-bottom:12px;">This is what a supervisor sees<br>when they find <em>your</em> gallery.</h2>
+      <p style="font-size:15px; color:var(--mid); max-width:540px; margin:0 auto; line-height:1.8;">Every track below was processed by SyncReady in under 60 seconds. Browse it the way a supervisor would.</p>
+    </div>
+
+    <!-- Artist Header Card -->
+    <div class="reveal" style="background:var(--card); border:1px solid var(--border); padding:32px 36px; margin-bottom:2px; display:grid; grid-template-columns:auto 1fr auto; gap:24px; align-items:center;">
+      <!-- Avatar -->
+      <div style="width:72px; height:72px; border-radius:50%; background:linear-gradient(135deg,#7c5cf5,#c8924a); display:flex; align-items:center; justify-content:center; font-family:'Libre Baskerville',serif; font-size:24px; font-weight:700; color:var(--white); flex-shrink:0; position:relative;">
+        SJ
+        <div style="position:absolute; inset:-3px; border-radius:50%; background:linear-gradient(135deg,#7c5cf5,#c8924a); z-index:-1; opacity:0.3; filter:blur(8px);"></div>
+      </div>
+      <!-- Info -->
+      <div>
+        <div style="font-family:'Libre Baskerville',serif; font-size:32px; font-weight:700; line-height:1; margin-bottom:6px;">Sable <em style="font-style:italic; color:var(--gold);">June</em></div>
+        <div style="font-size:13px; color:var(--mid); line-height:1.6; max-width:560px;">Sable June is a Los Angeles-based composer and producer specializing in cinematic electronic music for film, television, and interactive media. Her work lives in the space between tension and release — built for the moments that don't need words.</div>
+        <div style="display:flex; gap:12px; margin-top:12px; flex-wrap:wrap;">
+          <div style="font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--mid);">Cinematic · Electronic · Ambient</div>
+          <div style="font-size:10px; color:var(--dim);">·</div>
+          <div style="font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--mid);">Los Angeles, CA</div>
+          <div style="font-size:10px; color:var(--dim);">·</div>
+          <div style="font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--mid);">3 Tracks Available</div>
+        </div>
+        <div style="margin-top:12px; display:inline-flex; align-items:center; gap:6px; background:rgba(61,207,176,0.08); border:1px solid rgba(61,207,176,0.25); padding:4px 12px;">
+          <span style="color:var(--teal); font-size:12px;">✓</span>
+          <span style="font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--teal);">One-Stop Cleared — Artist Declared · AI Reviewed</span>
+        </div>
+      </div>
+      <!-- Contact -->
+      <div style="text-align:right; flex-shrink:0;">
+        <div style="font-size:9px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--dim); margin-bottom:6px;">Licensing Inquiries</div>
+        <a href="mailto:syncreadyio@gmail.com" style="font-size:13px; font-weight:500; color:var(--white); text-decoration:none;">syncreadyio@gmail.com</a>
+        <div style="font-size:11px; color:var(--dim); margin-top:4px;">Responds within 24 hrs · All deals considered</div>
+      </div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="reveal" style="background:var(--surface); border:1px solid var(--border); border-top:none; padding:14px 24px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:2px;">
+      <div style="font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--dim);">Filter</div>
+      <div class="demo-filter active" onclick="filterDemo('all',this)">All Tracks</div>
+      <div class="demo-filter" onclick="filterDemo('cinematic',this)">Cinematic</div>
+      <div class="demo-filter" onclick="filterDemo('ambient',this)">Ambient</div>
+      <div class="demo-filter" onclick="filterDemo('tense',this)">Tense</div>
+    </div>
+
+    <!-- TRACK 1 — Ghost in the Frame — WITH MOOD REEL -->
+    <div class="demo-track reveal" data-mood="cinematic tense" style="border:1px solid var(--gold-border); border-top:none; margin-bottom:2px; overflow:hidden; background:rgba(200,146,74,0.03);">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0;">
+
+        <!-- Left: Track Info -->
+        <div style="padding:28px 28px; border-right:1px solid var(--border);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
+            <div style="font-size:10px; font-weight:600; letter-spacing:2px; color:var(--dim); font-family:'Outfit',monospace;">01 / 03</div>
+            <div style="text-align:right;">
+              <div style="font-size:28px; font-weight:800; color:var(--teal); line-height:1;">94</div>
+              <div style="font-size:9px; color:var(--dim); letter-spacing:1px; text-transform:uppercase;">Sync Score</div>
+            </div>
+          </div>
+
+          <!-- Waveform -->
+          <div style="display:flex; align-items:center; gap:2px; height:28px; margin-bottom:14px;" id="wf-demo">
+            <div class="demo-wbar" style="height:35%"></div><div class="demo-wbar" style="height:80%"></div>
+            <div class="demo-wbar" style="height:100%"></div><div class="demo-wbar" style="height:55%"></div>
+            <div class="demo-wbar" style="height:75%"></div><div class="demo-wbar" style="height:45%"></div>
+            <div class="demo-wbar" style="height:90%"></div><div class="demo-wbar" style="height:60%"></div>
+            <div class="demo-wbar" style="height:70%"></div><div class="demo-wbar" style="height:40%"></div>
+            <div class="demo-wbar" style="height:85%"></div><div class="demo-wbar" style="height:50%"></div>
+            <div class="demo-wbar" style="height:65%"></div><div class="demo-wbar" style="height:95%"></div>
+            <div class="demo-wbar" style="height:42%"></div><div class="demo-wbar" style="height:72%"></div>
+          </div>
+
+          <div style="font-family:'Libre Baskerville',serif; font-size:22px; font-weight:700; margin-bottom:10px;">Ghost in the <em style="color:var(--gold);">Frame</em></div>
+
+          <!-- Tags -->
+          <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px;">
+            <div class="demo-tag mood-tag">Cinematic</div>
+            <div class="demo-tag key-tag">A Minor</div>
+            <div class="demo-tag">Tense</div>
+            <div class="demo-tag">Urban</div>
+          </div>
+
+          <!-- Stats -->
+          <div style="display:flex; gap:20px; padding-bottom:16px; border-bottom:1px solid var(--border); margin-bottom:16px;">
+            <div><div style="font-size:18px; font-weight:700;">124</div><div style="font-size:9px; color:var(--dim); letter-spacing:2px; text-transform:uppercase;">BPM</div></div>
+            <div><div style="font-size:18px; font-weight:700;">3:42</div><div style="font-size:9px; color:var(--dim); letter-spacing:2px; text-transform:uppercase;">Length</div></div>
+            <div><div style="font-size:18px; font-weight:700;">:04</div><div style="font-size:9px; color:var(--dim); letter-spacing:2px; text-transform:uppercase;">Intro</div></div>
+            <div><div style="font-size:18px; font-weight:700;">WAV</div><div style="font-size:9px; color:var(--dim); letter-spacing:2px; text-transform:uppercase;">Format</div></div>
+          </div>
+
+          <!-- AI Pitches -->
+          <div style="margin-bottom:16px;">
+            <div style="font-size:9px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:10px;">AI Scene Pitches</div>
+            <div class="pitch-item">
+              <div class="pitch-scene-tag">Crime Drama</div>
+              <div class="pitch-copy">"A detective who knows too much — this track mirrors the weight of a secret that's already cost everything."</div>
+            </div>
+            <div class="pitch-item">
+              <div class="pitch-scene-tag">Thriller</div>
+              <div class="pitch-copy">"Surveillance footage energy — the camera watching someone who doesn't know they're being watched."</div>
+            </div>
+            <div class="pitch-item">
+              <div class="pitch-scene-tag">Luxury Brand</div>
+              <div class="pitch-copy">"Dark sophistication for an automotive or tech brand that wants edge without aggression."</div>
+            </div>
+          </div>
+
+          <!-- Keywords -->
+          <div style="margin-bottom:18px;">
+            <div style="font-size:9px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Emotional Keywords</div>
+            <div style="display:flex; flex-wrap:wrap; gap:6px;">
+              <div class="kw-chip">late night pursuit</div>
+              <div class="kw-chip">quiet dread</div>
+              <div class="kw-chip">3am decision</div>
+              <div class="kw-chip">surveillance</div>
+              <div class="kw-chip">urban isolation</div>
+              <div class="kw-chip">last chance</div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div style="display:flex; gap:8px;">
+            <button onclick="toggleDemoPlay()" class="demo-play-btn" id="demoPlayBtn">▶ Preview</button>
+            <button class="demo-dl-btn" onclick="demoDownload()">↓ Download WAV</button>
+            <button class="demo-ver-btn" onclick="toggleVersions()">Versions ↕</button>
+          </div>
+
+          <!-- Versions -->
+          <div id="demoVersions" style="display:none; margin-top:10px; flex-direction:column; gap:4px;">
+            <div class="version-row"><span>↳ Full Mix (3:42)</span><span class="ver-dl">↓ WAV</span></div>
+            <div class="version-row"><span>↳ Instrumental (3:42)</span><span class="ver-dl">↓ WAV</span></div>
+            <div class="version-row"><span>↳ Sting / 30s Edit</span><span class="ver-dl">↓ WAV</span></div>
+            <div class="version-row"><span>↳ No Drums Version</span><span class="ver-dl">↓ WAV</span></div>
+          </div>
+        </div>
+
+        <!-- Right: Mood Reel -->
+        <div style="position:relative; overflow:hidden; background:#030306; min-height:380px;" id="moodReel">
+
+          <!-- Letterbox -->
+          <div style="position:absolute; top:0; left:0; right:0; height:36px; background:#000; z-index:5;"></div>
+          <div style="position:absolute; bottom:0; left:0; right:0; height:36px; background:#000; z-index:5;"></div>
+
+          <!-- Rain canvas -->
+          <canvas id="rainCanvas" style="position:absolute; inset:0; width:100%; height:100%; z-index:2;"></canvas>
+
+          <!-- City glow -->
+          <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 30% 70%, rgba(255,140,0,0.06) 0%, transparent 60%), radial-gradient(ellipse at 70% 60%, rgba(60,80,200,0.05) 0%, transparent 50%); z-index:1;"></div>
+
+          <!-- Platform lines -->
+          <div style="position:absolute; bottom:36px; left:0; right:0; z-index:3;">
+            <!-- Platform edge -->
+            <div style="height:2px; background:rgba(255,255,255,0.08); margin-bottom:8px;"></div>
+            <!-- Track rails -->
+            <div style="display:flex; gap:60%; padding:0 20%;"><div style="flex:1; height:1px; background:rgba(255,255,255,0.12);"></div><div style="flex:1; height:1px; background:rgba(255,255,255,0.12);"></div></div>
+          </div>
+
+          <!-- Figure silhouette -->
+          <div id="figureWrap" style="position:absolute; bottom:72px; left:50%; transform:translateX(-50%); z-index:4; text-align:center;">
+            <div style="width:4px; height:40px; background:rgba(255,255,255,0.15); margin:0 auto; border-radius:2px;"></div>
+            <div style="width:12px; height:12px; border-radius:50%; background:rgba(255,255,255,0.12); margin:-2px auto 0;"></div>
+          </div>
+
+          <!-- Scanlines -->
+          <div style="position:absolute; inset:0; background:repeating-linear-gradient(to bottom, transparent 0px, transparent 3px, rgba(0,0,0,0.12) 3px, rgba(0,0,0,0.12) 4px); z-index:6; pointer-events:none;"></div>
+
+          <!-- Film grain overlay -->
+          <div style="position:absolute; inset:0; opacity:0.4; z-index:7; pointer-events:none; background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%220.08%22/%3E%3C/svg%3E');"></div>
+
+          <!-- Security cam badge -->
+          <div style="position:absolute; top:44px; left:16px; z-index:8; display:flex; align-items:center; gap:6px;">
+            <div style="width:6px; height:6px; border-radius:50%; background:#e84545; animation:recBlink 1s ease-in-out infinite;"></div>
+            <div style="font-family:'Outfit',monospace; font-size:9px; letter-spacing:2px; color:rgba(255,255,255,0.4); text-transform:uppercase;">CAM 04 · 02:17</div>
+          </div>
+
+          <!-- Scene description overlay -->
+          <div style="position:absolute; bottom:44px; left:0; right:0; padding:0 20px; z-index:8;">
+            <div style="font-size:9px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--gold); opacity:0.8; margin-bottom:6px;">🎬 AI Mood Reel · Catalog Feature</div>
+            <div style="font-family:'Libre Baskerville',serif; font-size:14px; font-style:italic; color:rgba(255,255,255,0.75); line-height:1.5; text-shadow:0 2px 20px rgba(0,0,0,0.9);">"Rain-soaked platform, 2am. A figure who knows too much. The train that never comes."</div>
+          </div>
+
+          <!-- City lights bg -->
+          <div id="cityLights" style="position:absolute; bottom:80px; left:0; right:0; height:120px; z-index:2;"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Track 2 — Lowlight Drive -->
+    <div class="demo-track reveal" data-mood="ambient" style="border:1px solid var(--border); border-top:none; margin-bottom:2px; background:var(--card);">
+      <div style="padding:20px 28px; display:grid; grid-template-columns:auto 1fr auto; gap:20px; align-items:center;">
+        <div style="display:flex; align-items:center; gap:14px;">
+          <button class="demo-play-btn-sm">▶</button>
+          <div>
+            <div style="font-family:'Libre Baskerville',serif; font-size:17px; font-weight:700;">Lowlight <em style="color:var(--gold);">Drive</em></div>
+            <div style="display:flex; gap:8px; margin-top:4px;">
+              <div class="demo-tag" style="font-size:9px; padding:2px 7px;">Ambient</div>
+              <div class="demo-tag key-tag" style="font-size:9px; padding:2px 7px;">E♭ Major</div>
+              <div class="demo-tag" style="font-size:9px; padding:2px 7px;">Melancholic</div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; gap:24px; align-items:center;">
+          <div style="font-size:12px; color:var(--mid);">88 BPM · 4:15 · Intro :08</div>
+          <div style="font-size:11px; font-style:italic; color:var(--dim); max-width:300px;">"Empty highway at dawn — a character leaving everything behind, no looking back."</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="text-align:center;"><div style="font-size:22px; font-weight:800; color:var(--teal);">87</div><div style="font-size:9px; color:var(--dim); letter-spacing:1px;">SCORE</div></div>
+          <button class="demo-dl-btn" style="font-size:10px; padding:8px 14px;">↓ WAV</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Track 3 — Neon Sprawl -->
+    <div class="demo-track reveal" data-mood="cinematic tense" style="border:1px solid var(--border); border-top:none; margin-bottom:32px; background:var(--card);">
+      <div style="padding:20px 28px; display:grid; grid-template-columns:auto 1fr auto; gap:20px; align-items:center;">
+        <div style="display:flex; align-items:center; gap:14px;">
+          <button class="demo-play-btn-sm">▶</button>
+          <div>
+            <div style="font-family:'Libre Baskerville',serif; font-size:17px; font-weight:700;">Neon <em style="color:var(--gold);">Sprawl</em></div>
+            <div style="display:flex; gap:8px; margin-top:4px;">
+              <div class="demo-tag mood-tag" style="font-size:9px; padding:2px 7px;">Tense</div>
+              <div class="demo-tag key-tag" style="font-size:9px; padding:2px 7px;">F# Minor</div>
+              <div class="demo-tag" style="font-size:9px; padding:2px 7px;">Electronic</div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; gap:24px; align-items:center;">
+          <div style="font-size:12px; color:var(--mid);">140 BPM · 3:08 · Intro :02</div>
+          <div style="font-size:11px; font-style:italic; color:var(--dim); max-width:300px;">"City that never sleeps, protagonist who can't afford to either."</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="text-align:center;"><div style="font-size:22px; font-weight:800; color:var(--teal);">91</div><div style="font-size:9px; color:var(--dim); letter-spacing:1px;">SCORE</div></div>
+          <button class="demo-dl-btn" style="font-size:10px; padding:8px 14px;">↓ WAV</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="reveal" style="text-align:center;">
+      <a href="sable-june.html" target="_blank" style="display:inline-block; background:transparent; border:1px solid var(--gold-border); color:var(--gold); padding:14px 36px; font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; text-decoration:none; transition:all 0.2s; margin-right:12px;" onmouseover="this.style.background='rgba(200,146,74,0.1)'" onmouseout="this.style.background='transparent'">View Sable June's Full Gallery →</a>
+      <div style="margin-top:16px; font-size:12px; color:var(--dim);">This is a demo profile · Your gallery looks exactly like this · Processed in 60 seconds</div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+/* Demo section styles */
+.demo-filter {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--dim);
+  padding: 5px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+
+.demo-filter:hover { border-color: var(--border2); color: var(--white); }
+.demo-filter.active { background: var(--gold-soft); border-color: var(--gold-border); color: var(--gold); }
+
+.demo-wbar {
+  flex: 1;
+  background: var(--gold);
+  border-radius: 1px;
+  opacity: 0.5;
+  transition: all 0.2s;
+}
+
+.demo-wbar.playing {
+  opacity: 1;
+  animation: waveAnim 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes waveAnim { from{transform:scaleY(0.3)} to{transform:scaleY(1)} }
+
+.demo-tag {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  padding: 3px 9px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--dim);
+  text-transform: uppercase;
+}
+
+.mood-tag { border-color: rgba(124,92,245,0.3); color: #a98bff; background: rgba(124,92,245,0.07); }
+.key-tag { border-color: rgba(200,146,74,0.3); color: var(--gold); background: var(--gold-soft); }
+
+.pitch-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+  align-items: flex-start;
+}
+
+.pitch-scene-tag {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border: 1px solid var(--gold-border);
+  color: var(--gold);
+  background: var(--gold-soft);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.pitch-copy {
+  font-size: 12px;
+  color: var(--mid);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.kw-chip {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border2);
+  padding: 3px 10px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--dim);
+  transition: all 0.2s;
+  cursor: default;
+}
+
+.kw-chip:hover { border-color: var(--gold-border); color: var(--gold); background: var(--gold-soft); }
+
+.demo-play-btn {
+  background: var(--gold);
+  color: var(--bg);
+  border: none;
+  padding: 10px 18px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.demo-play-btn:hover { background: var(--gold2); }
+
+.demo-play-btn-sm {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-border);
+  color: var(--gold);
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.demo-play-btn-sm:hover { background: var(--gold); color: var(--bg); }
+
+.demo-dl-btn {
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-border);
+  color: var(--gold);
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.demo-dl-btn:hover { background: var(--gold); color: var(--bg); }
+
+.demo-ver-btn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--dim);
+  padding: 10px 14px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.demo-ver-btn:hover { border-color: var(--white); color: var(--white); }
+
+.version-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--dim);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.version-row:hover { border-color: var(--gold-border); color: var(--white); }
+
+.ver-dl {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--gold);
+}
+
+@keyframes recBlink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+.demo-track { transition: border-color 0.2s; }
+</style>
+
+<script>
+// Demo play toggle
+let demoPlaying = false;
+function toggleDemoPlay() {
+  demoPlaying = !demoPlaying;
+  const btn = document.getElementById('demoPlayBtn');
+  const bars = document.querySelectorAll('.demo-wbar');
+  if (demoPlaying) {
+    btn.textContent = '■ Stop';
+    btn.style.background = 'var(--teal)';
+    bars.forEach((b, i) => { b.classList.add('playing'); b.style.animationDelay = (i * 0.06) + 's'; });
+  } else {
+    btn.textContent = '▶ Preview';
+    btn.style.background = 'var(--gold)';
+    bars.forEach(b => b.classList.remove('playing'));
+  }
+}
+
+// Versions toggle
+function toggleVersions() {
+  const v = document.getElementById('demoVersions');
+  v.style.display = v.style.display === 'flex' ? 'none' : 'flex';
+  v.style.flexDirection = 'column';
+}
+
+// Download toast
+function demoDownload() {
+  const t = document.createElement('div');
+  t.textContent = '✓ Ghost in the Frame — download started';
+  t.style.cssText = 'position:fixed;bottom:28px;right:28px;background:var(--teal);color:#040e0a;padding:12px 20px;font-size:13px;font-weight:600;z-index:9999;transition:all 0.4s;';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3000);
+}
+
+// Filter demo tracks
+function filterDemo(mood, btn) {
+  document.querySelectorAll('.demo-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.demo-track').forEach(track => {
+    if (mood === 'all') { track.style.display = ''; }
+    else { track.style.display = (track.dataset.mood || '').includes(mood) ? '' : 'none'; }
+  });
+}
+
+// Rain canvas animation
+const canvas = document.getElementById('rainCanvas');
+if (canvas) {
+  const ctx = canvas.getContext('2d');
+  const drops = [];
+  function initCanvas() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    drops.length = 0;
+    for (let i = 0; i < 80; i++) {
+      drops.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, speed: Math.random() * 4 + 3, length: Math.random() * 20 + 10, opacity: Math.random() * 0.25 + 0.05 });
+    }
+  }
+  function drawRain() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drops.forEach(d => {
+      ctx.beginPath();
+      ctx.moveTo(d.x, d.y);
+      ctx.lineTo(d.x - 1, d.y + d.length);
+      ctx.strokeStyle = `rgba(180,190,220,${d.opacity})`;
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+      d.y += d.speed;
+      if (d.y > canvas.height) { d.y = -d.length; d.x = Math.random() * canvas.width; }
+    });
+    requestAnimationFrame(drawRain);
+  }
+  initCanvas();
+  drawRain();
+  window.addEventListener('resize', initCanvas);
+}
+
+// City lights
+const cityDiv = document.getElementById('cityLights');
+if (cityDiv) {
+  for (let i = 0; i < 30; i++) {
+    const light = document.createElement('div');
+    const size = Math.random() * 3 + 1;
+    const hue = Math.random() > 0.5 ? '40,80,200' : '255,140,60';
+    light.style.cssText = `position:absolute;width:${size}px;height:${size}px;border-radius:50%;background:rgba(${hue},${Math.random()*0.6+0.2});left:${Math.random()*100}%;top:${Math.random()*100}%;animation:cityPulse ${Math.random()*3+2}s ease-in-out ${Math.random()*2}s infinite;`;
+    cityDiv.appendChild(light);
+  }
+}
+</script>
+
+<style>
+@keyframes cityPulse { 0%,100%{opacity:0.3} 50%{opacity:0.9} }
+</style>
+
 <!-- MOOD REEL SHOWCASE -->
 <div class="reel-section" id="reels">
   <div class="reel-inner">
